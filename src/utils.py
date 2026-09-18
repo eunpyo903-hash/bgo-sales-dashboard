@@ -96,6 +96,11 @@ def format_kr_unit(amount) -> str:
     return sign + " ".join(parts)
 
 
+def format_period(yymm: str) -> str:
+    """'2609' -> '2026-09' (YYMM의 YY는 20XX 세기로 해석한다)."""
+    return f"20{yymm[:2]}-{yymm[2:]}"
+
+
 def safe_div_rate(numerator, denominator) -> float:
     """0으로 나누기를 방지하면서 퍼센트 달성률을 계산한다."""
     if not denominator:

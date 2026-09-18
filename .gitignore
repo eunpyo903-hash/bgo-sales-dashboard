@@ -9,3 +9,7 @@ token.json
 data/*.xlsx
 data/*.xlsm
 !data/.gitkeep
+
+# index.html 자동 백업본은 git 히스토리가 이미 대신하므로 버전관리하지 않는다
+backup/*.html
+!backup/.gitkeep

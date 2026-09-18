@@ -109,7 +109,7 @@ def build_pt_ranking(trainer_rows: list) -> list:
     return ranking
 
 
-def build_dashboard_json(period: str, branch_data: dict, trainer_rows: list) -> dict:
+def build_dashboard_json(period: str, branch_data: dict, trainer_rows: list, reference_date: str = None) -> dict:
     """표준 JSON 데이터 구조 전체를 조립한다."""
     company = aggregate_company(branch_data)
     company.update(aggregate_new_renew_totals(branch_data))
@@ -146,6 +146,7 @@ def build_dashboard_json(period: str, branch_data: dict, trainer_rows: list) -> 
 
     return {
         "period": period,
+        "reference_date": reference_date,
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "company": company,
         "branches": branches,

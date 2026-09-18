@@ -15,6 +15,12 @@ import shutil
 import sys
 from datetime import datetime
 
+# Windows 콘솔(cmd/PowerShell)이 UTF-8이 아닐 때 한글이 깨지는 것을 방지
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 from src.parser import (
     ParserNotReadyError,
     select_latest_files,
@@ -23,7 +29,7 @@ from src.parser import (
 )
 from src.validator import ValidationError, run_all_validations
 from src.aggregator import build_dashboard_json
-from src.utils import BRANCHES, format_won
+from src.utils import BRANCHES, format_won, format_period
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -87,8 +93,9 @@ def main():
             f"파일명 규칙(예: 2609_b_1_역삼점_총매출.xlsx)을 확인해주세요."
         )
 
+    period_label = format_period(period)
     print(f"대상월:")
-    print(f"{period[:2]}-{period[2:]} (YYMM: {period})")
+    print(f"{period_label} (YYMM: {period})")
     print()
 
     # [FILE CHECK]
@@ -114,7 +121,7 @@ def main():
     try:
         run_all_validations(selected_files, {})  # 파일 존재만 우선 검증 (조기 실패)
     except ValidationError as e:
-        fail("파일 누락", f"{period[:2]}-{period[2:]} {e}")
+        fail("파일 누락", f"{period_label} {e}")
 
     # [PARSING]
     print("[PARSING]")
@@ -167,8 +174,14 @@ def main():
     print(SUB_LINE)
     print()
 
+    # 데이터 기준일: 지점별 상세 거래내역 중 가장 최근 거래일 (Excel 원본 기준)
+    last_days = [d["last_transaction_day"] for d in branch_data.values() if d.get("last_transaction_day")]
+    reference_date = None
+    if last_days:
+        reference_date = f"{period_label}-{max(last_days):02d}"
+
     # [COMPANY]
-    dashboard = build_dashboard_json(f"{period[:2]}-{period[2:]}", branch_data, trainer_rows)
+    dashboard = build_dashboard_json(period_label, branch_data, trainer_rows, reference_date)
     company = dashboard["company"]
 
     print("[COMPANY]")

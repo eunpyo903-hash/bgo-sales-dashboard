@@ -461,7 +461,8 @@
   }
 
   function renderMeta(data) {
-    document.getElementById("meta-period").textContent = data.period || "-";
+    const refDate = (data.reference_date || data.period || "-").replace(/-/g, ".");
+    document.getElementById("meta-period").textContent = refDate;
     document.getElementById("meta-updated").textContent = data.generated_at || "-";
   }
 
