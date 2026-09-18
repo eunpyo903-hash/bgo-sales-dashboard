@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비고컴퍼니 통합 매출현황</title>
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --border: #e2e6ec;
+    --text-main: #1a2233;
+    --text-sub: #6b7688;
+    --brand: #1f4fd8;
+    --brand-dark: #16359c;
+    --good: #1a9e6b;
+    --warn: #d97706;
+    --bad: #d6415a;
+    --track: #eef1f6;
+    --gold: #b8860b;
+    --silver: #7c8698;
+    --bronze: #a15c2c;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-main);
+    font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  header.page-header {
+    padding: 28px 4px 20px;
+    border-bottom: 2px solid var(--text-main);
+    margin-bottom: 24px;
+  }
+
+  header.page-header h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  header.page-header .subtitle {
+    color: var(--text-sub);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-sub);
+  }
+
+  .meta-row b { color: var(--text-main); }
+
+  section { margin-bottom: 36px; }
+
+  h2.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 14px;
+    padding-left: 10px;
+    border-left: 4px solid var(--brand);
+  }
+
+  /* KPI */
+  .kpi-primary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .kpi-secondary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .kpi-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+
+  .kpi-card .label {
+    font-size: 12px;
+    color: var(--text-sub);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .kpi-card .value {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+
+  .kpi-card .sub-value {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-top: 4px;
+  }
+
+  .kpi-card.primary .value { color: var(--brand-dark); }
+
+  .fcpt-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .fcpt-block .fcpt-title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: var(--text-sub);
+  }
+
+  .fcpt-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 4px 0;
+  }
+
+  .fcpt-row .rate { font-weight: 700; }
+
+  /* progress bar */
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: var(--track);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--brand);
+    border-radius: 999px;
+  }
+
+  .progress-fill.good { background: var(--good); }
+  .progress-fill.warn { background: var(--warn); }
+  .progress-fill.bad { background: var(--bad); }
+
+  /* branch cards */
+  .branch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .branch-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .branch-card .branch-name {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .branch-card .metric-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    padding: 3px 0;
+    color: var(--text-sub);
+  }
+
+  .branch-card .metric-line b {
+    color: var(--text-main);
+    font-weight: 700;
+  }
+
+  .branch-card .metric-group {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  /* tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 13px;
+  }
+
+  thead th {
+    background: #f0f3f8;
+    color: var(--text-sub);
+    font-weight: 700;
+    text-align: right;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  thead th:first-child, thead th:nth-child(2) { text-align: left; }
+
+  tbody td {
+    padding: 10px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody td:first-child, tbody td:nth-child(2) { text-align: left; font-weight: 600; }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  tfoot td {
+    padding: 10px 12px;
+    text-align: right;
+    font-weight: 800;
+    background: #f7f9fc;
+  }
+
+  tfoot td:first-child, tfoot td:nth-child(2) { text-align: left; }
+
+  .table-scroll { overflow-x: auto; }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--track);
+    color: var(--text-sub);
+    font-weight: 800;
+    font-size: 12px;
+  }
+
+  tr.top1 .rank-badge { background: var(--gold); color: #fff; }
+  tr.top2 .rank-badge { background: var(--silver); color: #fff; }
+  tr.top3 .rank-badge { background: var(--bronze); color: #fff; }
+
+  .empty-state {
+    background: var(--card-bg);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .empty-state code {
+    background: var(--track);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 860px) {
+    .kpi-primary { grid-template-columns: repeat(2, 1fr); }
+    .kpi-secondary { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 520px) {
+    .kpi-primary { grid-template-columns: 1fr; }
+    header.page-header h1 { font-size: 21px; }
+    .kpi-card .value { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-header">
+    <h1>비고컴퍼니 통합 매출현황</h1>
+    <div class="subtitle">BGO COMPANY&nbsp;&nbsp;·&nbsp;&nbsp;SALES PERFORMANCE DASHBOARD</div>
+    <div class="meta-row">
+      <div>데이터 기준: <b id="meta-period">-</b></div>
+      <div>최종 업데이트: <b id="meta-updated">-</b></div>
+    </div>
+  </header>
+
+  <div id="empty-state" class="empty-state" style="display:none;">
+    아직 표시할 매출 데이터가 없습니다.<br><br>
+    <code>data</code> 폴더에 7개 지점 총매출 Excel 파일을 넣고<br>
+    <code>python update.py</code> 를 실행하면 이 화면이 자동으로 채워집니다.
+  </div>
+
+  <div id="dashboard-content" style="display:none;">
+
+    <section>
+      <h2 class="section-title">전체 현황</h2>
+      <div class="kpi-primary">
+        <div class="kpi-card primary">
+          <div class="label">전 지점 총매출</div>
+          <div class="value" id="kpi-actual-total">-</div>
+          <div class="sub-value" id="kpi-actual-total-sub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">총 목표</div>
+          <div class="value" id="kpi-target-total">-</div>
+          <div class="sub-value" id="kpi-target-total-sub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">전체 달성률</div>
+          <div class="value" id="kpi-rate-total">-</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">목표까지 남은 금액</div>
+          <div class="value" id="kpi-remaining">-</div>
+        </div>
+      </div>
+      <div class="kpi-secondary">
+        <div class="fcpt-block">
+          <div class="fcpt-title">FC</div>
+          <div class="fcpt-row"><span>목표</span><span id="fc-target">-</span></div>
+          <div class="fcpt-row"><span>매출</span><span id="fc-actual">-</span></div>
+          <div class="fcpt-row"><span>달성률</span><span class="rate" id="fc-rate">-</span></div>
+        </div>
+        <div class="fcpt-block">
+          <div class="fcpt-title">PT</div>
+          <div class="fcpt-row"><span>목표</span><span id="pt-target">-</span></div>
+          <div class="fcpt-row"><span>매출</span><span id="pt-actual">-</span></div>
+          <div class="fcpt-row"><span>달성률</span><span class="rate" id="pt-rate">-</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">지점별 매출 현황</h2>
+      <div class="branch-grid" id="branch-cards"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">지점별 실적 순위 (총매출 목표 달성률 기준)</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>순위</th><th>지점</th><th>매출</th><th>목표</th><th>달성률</th>
+            </tr>
+          </thead>
+          <tbody id="branch-ranking-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">FC 신규 / 재등록</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>지점</th><th></th><th>신규 건수</th><th>신규 매출</th><th>재등록 건수</th><th>재등록 매출</th>
+            </tr>
+          </thead>
+          <tbody id="fc-new-renew-body"></tbody>
+          <tfoot id="fc-new-renew-foot"></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">PT 신규 / 재등록</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>지점</th><th></th><th>신규 건수</th><th>신규 매출</th><th>재등록 건수</th><th>재등록 매출</th>
+            </tr>
+          </thead>
+          <tbody id="pt-new-renew-body"></tbody>
+          <tfoot id="pt-new-renew-foot"></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">PT 개인매출 종합 순위</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>순위</th><th>트레이너</th><th>지점</th><th>매출</th>
+            </tr>
+          </thead>
+          <tbody id="pt-ranking-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+<script>
+(function () {
+  function formatWon(n) {
+    if (n === null || n === undefined || isNaN(n)) return "-";
+    return Math.round(n).toLocaleString("ko-KR") + "원";
+  }
+
+  function formatRate(n) {
+    if (n === null || n === undefined || isNaN(n)) return "-";
+    return n.toFixed(1) + "%";
+  }
+
+  function rateClass(rate) {
+    if (rate >= 100) return "good";
+    if (rate >= 80) return "warn";
+    return "bad";
+  }
+
+  function el(tag, className, html) {
+    const e = document.createElement(tag);
+    if (className) e.className = className;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  function renderKPI(data) {
+    const c = data.company;
+    document.getElementById("kpi-actual-total").textContent = formatWon(c.actual_total);
+    document.getElementById("kpi-target-total").textContent = formatWon(c.target_total);
+    document.getElementById("kpi-rate-total").textContent = formatRate(c.rate_total);
+    document.getElementById("kpi-remaining").textContent =
+      formatWon(Math.max(c.target_total - c.actual_total, 0));
+
+    document.getElementById("fc-target").textContent = formatWon(c.target_fc);
+    document.getElementById("fc-actual").textContent = formatWon(c.actual_fc);
+    document.getElementById("fc-rate").textContent = formatRate(c.rate_fc);
+
+    document.getElementById("pt-target").textContent = formatWon(c.target_pt);
+    document.getElementById("pt-actual").textContent = formatWon(c.actual_pt);
+    document.getElementById("pt-rate").textContent = formatRate(c.rate_pt);
+  }
+
+  function renderMeta(data) {
+    document.getElementById("meta-period").textContent = data.period || "-";
+    document.getElementById("meta-updated").textContent = data.generated_at || "-";
+  }
+
+  function renderBranchCards(data) {
+    const wrap = document.getElementById("branch-cards");
+    wrap.innerHTML = "";
+    data.branches.forEach(function (b) {
+      const card = el("div", "branch-card");
+      card.appendChild(el("div", "branch-name", b.branch_name + "점"));
+
+      function metricLine(label, target, actual, rate) {
+        const line = el("div", "metric-line",
+          "<span>" + label + "</span><span><b>" + formatWon(actual) + "</b> / " + formatWon(target) + "</span>");
+        return line;
+      }
+
+      const totalGroup = el("div");
+      totalGroup.appendChild(metricLine("TOTAL", b.target_total, b.actual_total, b.rate_total));
+      const totalBar = el("div", "progress-track");
+      const totalFill = el("div", "progress-fill " + rateClass(b.rate_total));
+      totalFill.style.width = Math.min(b.rate_total, 100) + "%";
+      totalBar.appendChild(totalFill);
+      totalGroup.appendChild(totalBar);
+      totalGroup.appendChild(el("div", "metric-line", "<span>달성률</span><span><b>" + formatRate(b.rate_total) + "</b></span>"));
+      card.appendChild(totalGroup);
+
+      const fcGroup = el("div", "metric-group");
+      fcGroup.appendChild(metricLine("FC", b.target_fc, b.actual_fc, b.rate_fc));
+      fcGroup.appendChild(el("div", "metric-line", "<span>달성률</span><span>" + formatRate(b.rate_fc) + "</span>"));
+      card.appendChild(fcGroup);
+
+      const ptGroup = el("div", "metric-group");
+      ptGroup.appendChild(metricLine("PT", b.target_pt, b.actual_pt, b.rate_pt));
+      ptGroup.appendChild(el("div", "metric-line", "<span>달성률</span><span>" + formatRate(b.rate_pt) + "</span>"));
+      card.appendChild(ptGroup);
+
+      wrap.appendChild(card);
+    });
+  }
+
+  function renderBranchRanking(data) {
+    const body = document.getElementById("branch-ranking-body");
+    body.innerHTML = "";
+    (data.branch_ranking || []).forEach(function (r) {
+      const tr = el("tr");
+      if (r.rank <= 3) tr.className = "top" + r.rank;
+      tr.innerHTML =
+        "<td><span class='rank-badge'>" + r.rank + "</span></td>" +
+        "<td>" + r.branch_name + "점</td>" +
+        "<td>" + formatWon(r.actual_total) + "</td>" +
+        "<td>" + formatWon(r.target_total) + "</td>" +
+        "<td>" + formatRate(r.rate_total) + "</td>";
+      body.appendChild(tr);
+    });
+  }
+
+  function renderNewRenewTable(data, prefix, bodyId, footId) {
+    const body = document.getElementById(bodyId);
+    const foot = document.getElementById(footId);
+    body.innerHTML = "";
+
+    let totalNewCount = 0, totalNewSales = 0, totalRenewCount = 0, totalRenewSales = 0;
+
+    data.branches.forEach(function (b) {
+      const newCount = b[prefix + "_new_count"];
+      const newSales = b[prefix + "_new_sales"];
+      const renewCount = b[prefix + "_renew_count"];
+      const renewSales = b[prefix + "_renew_sales"];
+
+      totalNewCount += newCount;
+      totalNewSales += newSales;
+      totalRenewCount += renewCount;
+      totalRenewSales += renewSales;
+
+      const tr = el("tr");
+      tr.innerHTML =
+        "<td>" + b.branch_name + "점</td><td></td>" +
+        "<td>" + newCount.toLocaleString("ko-KR") + "건</td>" +
+        "<td>" + formatWon(newSales) + "</td>" +
+        "<td>" + renewCount.toLocaleString("ko-KR") + "건</td>" +
+        "<td>" + formatWon(renewSales) + "</td>";
+      body.appendChild(tr);
+    });
+
+    foot.innerHTML =
+      "<tr><td>전체 합계</td><td></td>" +
+      "<td>" + totalNewCount.toLocaleString("ko-KR") + "건</td>" +
+      "<td>" + formatWon(totalNewSales) + "</td>" +
+      "<td>" + totalRenewCount.toLocaleString("ko-KR") + "건</td>" +
+      "<td>" + formatWon(totalRenewSales) + "</td></tr>";
+  }
+
+  function renderPtRanking(data) {
+    const body = document.getElementById("pt-ranking-body");
+    body.innerHTML = "";
+    (data.pt_ranking || []).forEach(function (r) {
+      const tr = el("tr");
+      if (r.rank <= 3) tr.className = "top" + r.rank;
+      tr.innerHTML =
+        "<td><span class='rank-badge'>" + r.rank + "</span></td>" +
+        "<td>" + r.name + "</td>" +
+        "<td>" + r.branch_name + "점</td>" +
+        "<td>" + formatWon(r.sales) + "</td>";
+      body.appendChild(tr);
+    });
+  }
+
+  function render(data) {
+    renderMeta(data);
+    renderKPI(data);
+    renderBranchCards(data);
+    renderBranchRanking(data);
+    renderNewRenewTable(data, "fc", "fc-new-renew-body", "fc-new-renew-foot");
+    renderNewRenewTable(data, "pt", "pt-new-renew-body", "pt-new-renew-foot");
+    renderPtRanking(data);
+
+    document.getElementById("empty-state").style.display = "none";
+    document.getElementById("dashboard-content").style.display = "block";
+  }
+
+  function showEmpty() {
+    document.getElementById("empty-state").style.display = "block";
+    document.getElementById("dashboard-content").style.display = "none";
+  }
+
+  fetch("output/dashboard_data.json", { cache: "no-store" })
+    .then(function (res) {
+      if (!res.ok) throw new Error("no data");
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || !data.branches || !data.branches.length) {
+        showEmpty();
+        return;
+      }
+      render(data);
+    })
+    .catch(function () {
+      showEmpty();
+    });
+})();
+</script>
+</body>
+</html>

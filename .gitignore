@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+credentials.json
+token.json
+.DS_Store
+
+# 실제 매출 Excel 원본 파일은 저장소에 올리지 않는다 (data 폴더 구조만 유지)
+data/*.xlsx
+data/*.xlsm
+!data/.gitkeep
