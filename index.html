@@ -483,7 +483,7 @@
       totalGroup.appendChild(metricLine("TOTAL", b.target_total, b.actual_total, b.rate_total));
       const totalBar = el("div", "progress-track");
       const totalFill = el("div", "progress-fill " + rateClass(b.rate_total));
-      totalFill.style.width = Math.min(b.rate_total, 100) + "%";
+      totalFill.style.width = Math.max(Math.min(b.rate_total, 100), 0) + "%";
       totalBar.appendChild(totalFill);
       totalGroup.appendChild(totalBar);
       totalGroup.appendChild(el("div", "metric-line", "<span>달성률</span><span><b>" + formatRate(b.rate_total) + "</b></span>"));
