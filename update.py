@@ -135,6 +135,8 @@ def main():
             branch_data[no] = data
             trainer_rows.extend(extract_pt_ranking(file_info["path"], no))
             print(f"{name:<8} OK")
+            for note in data.get("parser_notes", []):
+                print(f"         {note}")
     except ParserNotReadyError as e:
         print(f"{BRANCHES[no]:<8} FAILED")
         fail(

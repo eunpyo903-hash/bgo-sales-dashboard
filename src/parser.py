@@ -192,6 +192,47 @@ def _last_transaction_day(ws) -> int:
     return last_day
 
 
+NEW_RENEW_CELLS = {
+    "fc_new_count": CELL_FC_NEW_COUNT, "fc_new_sales": CELL_FC_NEW_SALES,
+    "fc_renew_count": CELL_FC_RENEW_COUNT, "fc_renew_sales": CELL_FC_RENEW_SALES,
+    "pt_new_count": CELL_PT_NEW_COUNT, "pt_new_sales": CELL_PT_NEW_SALES,
+    "pt_renew_count": CELL_PT_RENEW_COUNT, "pt_renew_sales": CELL_PT_RENEW_SALES,
+}
+
+
+def _is_num(value) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def _recompute_new_renew(ws) -> dict:
+    """
+    상세 거래 내역(15행~)에서 신규/재등록 집계를 직접 다시 센다.
+    Excel의 K8:U8 수식(SUBTOTAL, 필터로 숨겨진 행 제외)과 같은 규칙이다.
+      FC 건수: G열이 신규/재등록인 행 중 D열(회원권 기간)이 숫자인 행 수
+      PT 건수: G열이 신규/재등록인 행 중 E열(PT 세션)이 숫자인 행 수
+      FC 매출: I,J,K열 합 / PT 매출: O,P,Q열 합
+    """
+    result = {}
+    for key, label in (("new", "신규"), ("renew", "재등록")):
+        fc_count = fc_sales = pt_count = pt_sales = 0
+        for r in range(DETAIL_START_ROW, 515):
+            if ws.row_dimensions[r].hidden or ws.cell(row=r, column=7).value != label:
+                continue
+            if _is_num(ws.cell(row=r, column=4).value):
+                fc_count += 1
+            if _is_num(ws.cell(row=r, column=5).value):
+                pt_count += 1
+            fc_sales += sum(ws.cell(row=r, column=c).value for c in (9, 10, 11)
+                            if _is_num(ws.cell(row=r, column=c).value))
+            pt_sales += sum(ws.cell(row=r, column=c).value for c in (15, 16, 17)
+                            if _is_num(ws.cell(row=r, column=c).value))
+        result[f"fc_{key}_count"] = fc_count
+        result[f"fc_{key}_sales"] = int(fc_sales) if float(fc_sales).is_integer() else fc_sales
+        result[f"pt_{key}_count"] = pt_count
+        result[f"pt_{key}_sales"] = int(pt_sales) if float(pt_sales).is_integer() else pt_sales
+    return result
+
+
 def extract_branch_data(file_path: str, branch_no: int) -> dict:
     """지점 Excel 1개의 [매출] Sheet에서 표준 데이터 항목을 추출한다."""
     wb = load_workbook(filename=file_path, data_only=True)
@@ -208,7 +249,21 @@ def extract_branch_data(file_path: str, branch_no: int) -> dict:
         """Excel 소수(0.483...) 형태의 달성률을 퍼센트 숫자로 변환한다."""
         return round(ws[cell_addr].value * 100, 1)
 
+    recomputed = _recompute_new_renew(ws)
+    new_renew = {}
+    notes = []
+    for key, addr in NEW_RENEW_CELLS.items():
+        saved = ws[addr].value
+        if saved != recomputed[key]:
+            notes.append(
+                f"WARNING: {BRANCHES[branch_no]}점 {key}: Excel 저장값({saved})과 상세내역 재계산값"
+                f"({recomputed[key]})이 달라 재계산값을 사용했습니다. ({addr})"
+            )
+        new_renew[key] = recomputed[key]
+
     return {
+        **new_renew,
+        "parser_notes": notes,
         "target_fc": ws[CELL_TARGET_FC].value,
         "target_pt": ws[CELL_TARGET_PT].value,
         "target_total": ws[CELL_TARGET_TOTAL].value,
@@ -220,16 +275,6 @@ def extract_branch_data(file_path: str, branch_no: int) -> dict:
         "rate_fc": pct(CELL_RATE_FC),
         "rate_pt": pct(CELL_RATE_PT),
         "rate_total": pct(CELL_RATE_TOTAL),
-
-        "fc_new_count": ws[CELL_FC_NEW_COUNT].value,
-        "fc_new_sales": ws[CELL_FC_NEW_SALES].value,
-        "fc_renew_count": ws[CELL_FC_RENEW_COUNT].value,
-        "fc_renew_sales": ws[CELL_FC_RENEW_SALES].value,
-
-        "pt_new_count": ws[CELL_PT_NEW_COUNT].value,
-        "pt_new_sales": ws[CELL_PT_NEW_SALES].value,
-        "pt_renew_count": ws[CELL_PT_RENEW_COUNT].value,
-        "pt_renew_sales": ws[CELL_PT_RENEW_SALES].value,
 
         "card": ws[CELL_CARD].value,
         "cash": ws[CELL_CASH].value,
