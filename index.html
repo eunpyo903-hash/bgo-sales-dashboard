@@ -281,6 +281,90 @@
     font-size: 13px;
   }
 
+  /* tabs */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    appearance: none;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 10px 16px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-sub);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .tab-btn.active {
+    color: var(--brand-dark);
+    border-bottom-color: var(--brand);
+  }
+
+  /* promotion */
+  .promo-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 20px;
+  }
+
+  .promo-head b { color: var(--text-main); }
+
+  .promo-rule {
+    font-size: 12.5px;
+    color: var(--text-sub);
+    margin: -6px 0 12px 14px;
+  }
+
+  .podium {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .podium-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--track);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .podium-card.top1 { border-top-color: var(--gold); }
+  .podium-card.top2 { border-top-color: var(--silver); }
+  .podium-card.top3 { border-top-color: var(--bronze); }
+
+  .podium-card .place { font-size: 12px; font-weight: 700; color: var(--text-sub); }
+  .podium-card .who { font-size: 18px; font-weight: 800; margin: 2px 0; }
+  .podium-card .who small { font-size: 12px; font-weight: 600; color: var(--text-sub); margin-left: 4px; }
+  .podium-card .amount { font-size: 15px; font-weight: 700; color: var(--brand-dark); }
+  .podium-card .prize { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
+
+  .prize-tag {
+    display: inline-block;
+    background: #fff4d6;
+    color: #8a6100;
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+
+  td.muted { color: var(--text-sub); }
+
   @media (max-width: 860px) {
     .kpi-primary { grid-template-columns: repeat(2, 1fr); }
     .kpi-secondary { grid-template-columns: 1fr; }
@@ -312,6 +396,13 @@
   </div>
 
   <div id="dashboard-content" style="display:none;">
+
+    <nav class="tab-bar" role="tablist">
+      <button class="tab-btn active" role="tab" data-tab="monthly">월간 매출현황</button>
+      <button class="tab-btn" role="tab" data-tab="promo" id="tab-btn-promo" style="display:none;">4분기 프로모션</button>
+    </nav>
+
+    <div class="tab-panel" data-panel="monthly">
 
     <section>
       <h2 class="section-title">전체 현황</h2>
@@ -413,6 +504,44 @@
         </table>
       </div>
     </section>
+
+    </div>
+
+    <div class="tab-panel" data-panel="promo" style="display:none;">
+      <div class="promo-head">
+        <div>프로모션 기간: <b id="promo-period">-</b></div>
+        <div>집계 월: <b id="promo-months">-</b></div>
+        <div>데이터 기준: <b id="promo-ref">-</b></div>
+      </div>
+
+      <section>
+        <h2 class="section-title">PT · PT시니어 — 기간 내 누적 개인 매출</h2>
+        <div class="promo-rule">1등 100만 원 · 2등 50만 원 · 3등 20만 원 &nbsp;|&nbsp; 대상: 시니어·팀원 (PT부서장 제외) &nbsp;|&nbsp; 워크인 매출 제외 (비고/기타 칸에 '워크인' 표기된 PT 매출)</div>
+        <div class="podium" id="promo-staff-podium"></div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>순위</th><th>트레이너</th><th>지점</th><th>직급</th><th>누적 매출</th><th>앞 순위와 차이</th></tr>
+            </thead>
+            <tbody id="promo-staff-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">PT부서장 — 기간 내 누적 개인 매출</h2>
+        <div class="promo-rule">1등 50만 원 &nbsp;|&nbsp; ※ 부서장 공석 시 해당 지점장으로 대체</div>
+        <div class="podium" id="promo-heads-podium"></div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>순위</th><th>부서장</th><th>지점</th><th>직급</th><th>누적 매출</th><th>앞 순위와 차이</th></tr>
+            </thead>
+            <tbody id="promo-heads-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
 
   </div>
 
@@ -570,6 +699,75 @@
     });
   }
 
+  function renderPromoPodium(id, ranking, prizes) {
+    const wrap = document.getElementById(id);
+    wrap.innerHTML = "";
+    prizes.forEach(function (prize, i) {
+      const winners = ranking.filter(function (r) { return r.rank === i + 1 && r.sales > 0; });
+      const card = el("div", "podium-card top" + (i + 1));
+      let html = "<div class='place'>" + (i + 1) + "등" + (winners.length > 1 ? " (공동)" : "") + "</div>";
+      if (!winners.length) {
+        html += "<div class='who'>-</div>";
+      }
+      winners.forEach(function (w) {
+        html += "<div class='who'>" + w.name + "<small>" + w.branch_name + "점</small></div>" +
+          "<div class='amount'>" + formatWon(w.sales) + "</div>";
+      });
+      html += "<div class='prize'>포상 " + formatWon(prize) + "</div>";
+      card.innerHTML = html;
+      wrap.appendChild(card);
+    });
+  }
+
+  function renderPromoTable(id, ranking) {
+    const body = document.getElementById(id);
+    body.innerHTML = "";
+    ranking.forEach(function (r) {
+      const tr = el("tr");
+      if (r.rank <= 3 && r.sales > 0) tr.className = "top" + r.rank;
+      const walkin = r.walkin_sales ? "<span class='prize-tag'>워크인 -" + formatWon(r.walkin_sales) + "</span>" : "";
+      tr.innerHTML =
+        "<td><span class='rank-badge'>" + r.rank + "</span></td>" +
+        "<td>" + r.name + (r.prize ? "<span class='prize-tag'>" + formatWon(r.prize) + "</span>" : "") + "</td>" +
+        "<td>" + r.branch_name + "점</td>" +
+        "<td class='muted'>" + (r.title || "-") + "</td>" +
+        "<td>" + formatWon(r.sales) + walkin + "</td>" +
+        "<td class='muted'>" + (r.gap_to_prev ? "-" + formatWon(r.gap_to_prev) : "-") + "</td>";
+      body.appendChild(tr);
+    });
+  }
+
+  function renderPromotion(data) {
+    const p = data.promotion;
+    if (!p) return;
+    document.getElementById("tab-btn-promo").style.display = "";
+    document.getElementById("promo-period").textContent = p.period_label;
+    document.getElementById("promo-months").textContent = p.months.join(", ");
+    document.getElementById("promo-ref").textContent = (data.reference_date || "-").replace(/-/g, ".");
+    renderPromoPodium("promo-staff-podium", p.staff.ranking, p.staff.prizes);
+    renderPromoTable("promo-staff-body", p.staff.ranking);
+    renderPromoPodium("promo-heads-podium", p.heads.ranking, p.heads.prizes);
+    renderPromoTable("promo-heads-body", p.heads.ranking);
+  }
+
+  function showTab(name) {
+    if (name === "promo" && document.getElementById("tab-btn-promo").style.display === "none") name = "monthly";
+    document.querySelectorAll(".tab-btn").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.tab === name);
+      b.setAttribute("aria-selected", b.dataset.tab === name ? "true" : "false");
+    });
+    document.querySelectorAll(".tab-panel").forEach(function (p) {
+      p.style.display = p.dataset.panel === name ? "" : "none";
+    });
+  }
+
+  document.querySelectorAll(".tab-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      history.replaceState(null, "", b.dataset.tab === "promo" ? "#promo" : location.pathname + location.search);
+      showTab(b.dataset.tab);
+    });
+  });
+
   function render(data) {
     renderMeta(data);
     renderKPI(data);
@@ -578,6 +776,8 @@
     renderNewRenewTable(data, "fc", "fc-new-renew-body", "fc-new-renew-foot");
     renderNewRenewTable(data, "pt", "pt-new-renew-body", "pt-new-renew-foot");
     renderPtRanking(data);
+    renderPromotion(data);
+    showTab(location.hash === "#promo" ? "promo" : "monthly");
 
     document.getElementById("empty-state").style.display = "none";
     document.getElementById("dashboard-content").style.display = "block";

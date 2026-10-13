@@ -27,6 +27,7 @@ openpyxl로 직접 열어 Sheet 구성(매출/매출순위/페이롤), 병합 �
   B15:B(끝) = 상세 거래 내역의 날짜(일자) → 최신 거래일(기준일) 계산에 사용
 
 [매출순위] 시트 레이아웃 (공통 확인됨, PT 개인매출 순위 원본)
+  C열 = 직급 (매니저/팀장/시니어/팀원)
   D열 = PT 트레이너 성명 (비어 있으면 미배정 슬롯 → 제외)
   E열 = 해당 트레이너 PT 개인 매출 (수식 결과)
   F열 = 지점명
@@ -73,6 +74,7 @@ DETAIL_DATE_COL = 2  # B열
 
 # [매출순위] 시트 컬럼
 PT_RANK_START_ROW = 4
+PT_RANK_TITLE_COL = 3   # C열
 PT_RANK_NAME_COL = 4    # D열
 PT_RANK_SALES_COL = 5   # E열
 PT_RANK_BRANCH_COL = 6  # F열
@@ -146,8 +148,20 @@ def select_latest_files(data_dir: str, warnings: list = None):
         return None, {}
 
     latest_yymm = sorted(scanned.keys())[-1]
-    branch_files = scanned[latest_yymm]
+    return latest_yymm, _pick_branch_files(latest_yymm, scanned[latest_yymm], warnings)
 
+
+def select_files_for_month(data_dir: str, yymm: str, warnings: list = None) -> dict:
+    """지정한 YYMM의 지점별 파일을 하나씩 확정한다. 해당 월 파일이 없으면 {}."""
+    if warnings is None:
+        warnings = []
+    scanned = scan_data_dir(data_dir)
+    if yymm not in scanned:
+        return {}
+    return _pick_branch_files(yymm, scanned[yymm], warnings)
+
+
+def _pick_branch_files(yymm: str, branch_files: dict, warnings: list) -> dict:
     selected = {}
     for branch_no, candidates in branch_files.items():
         if len(candidates) == 1:
@@ -156,7 +170,7 @@ def select_latest_files(data_dir: str, warnings: list = None):
 
         # 1차: 표준 파일명 패턴과의 정확도 우선 정렬, 2차: mtime 최신
         def sort_key(c):
-            standard_name = f"{latest_yymm}_b_{branch_no}_{BRANCHES[branch_no]}점_총매출"
+            standard_name = f"{yymm}_b_{branch_no}_{BRANCHES[branch_no]}점_총매출"
             exact_match = 1 if c["filename"].startswith(standard_name) else 0
             return (exact_match, c["mtime"])
 
@@ -165,11 +179,11 @@ def select_latest_files(data_dir: str, warnings: list = None):
 
         other_names = ", ".join(c["filename"] for c in candidates_sorted[1:])
         warnings.append(
-            f"WARNING: {latest_yymm} {BRANCHES[branch_no]}점 파일이 {len(candidates)}개 발견되어 "
+            f"WARNING: {yymm} {BRANCHES[branch_no]}점 파일이 {len(candidates)}개 발견되어 "
             f"'{candidates_sorted[0]['filename']}' 파일을 선택했습니다. (제외: {other_names})"
         )
 
-    return latest_yymm, selected
+    return selected
 
 
 def _require_sheet(wb, sheet_name, file_path):
@@ -302,15 +316,48 @@ def extract_pt_ranking(file_path: str, branch_no: int) -> list:
             continue
         sales = ws.cell(row=r, column=PT_RANK_SALES_COL).value
         branch_cell = ws.cell(row=r, column=PT_RANK_BRANCH_COL).value
+        title = ws.cell(row=r, column=PT_RANK_TITLE_COL).value
 
         rows.append({
             "name": str(name).strip(),
             "branch_no": branch_no,
             "branch_name": (branch_cell or f"{branch_name}점").replace("점", "") or branch_name,
             "sales": sales if isinstance(sales, (int, float)) else 0,
+            "title": str(title).strip() if title else None,
         })
 
     return rows
+
+
+WALKIN_KEYWORD = "워크인"
+DETAIL_ETC_COL = 6       # F열 (기타)
+DETAIL_MANAGER_COL = 8   # H열 (담당자)
+DETAIL_MEMO_COL = 22     # V열 (비고)
+# [매출순위] E열 수식과 같은 PT 매출 컬럼: O,P,Q(PT매출) + T(PT 환불)
+DETAIL_PT_SALES_COLS = (15, 16, 17, 20)
+
+
+def extract_walkin_pt_sales(file_path: str) -> dict:
+    """
+    [매출] 상세 거래 내역 중 비고(V열) 또는 기타(F열)에 '워크인'이 적힌 행의
+    PT 매출을 담당자(H열)별로 합산한다. 반환: {담당자: 금액}
+    """
+    wb = load_workbook(filename=file_path, data_only=True)
+    ws = _require_sheet(wb, SHEET_SALES, file_path)
+
+    result = defaultdict(float)
+    for r in range(DETAIL_START_ROW, 515):
+        memo = f"{ws.cell(row=r, column=DETAIL_MEMO_COL).value or ''} {ws.cell(row=r, column=DETAIL_ETC_COL).value or ''}"
+        if WALKIN_KEYWORD not in memo.replace(" ", ""):
+            continue
+        manager = ws.cell(row=r, column=DETAIL_MANAGER_COL).value
+        if not manager:
+            continue
+        result[str(manager).strip()] += sum(
+            ws.cell(row=r, column=c).value for c in DETAIL_PT_SALES_COLS
+            if _is_num(ws.cell(row=r, column=c).value)
+        )
+    return {k: int(v) if float(v).is_integer() else v for k, v in result.items()}
 
 
 def open_workbook(file_path: str, data_only: bool = True):

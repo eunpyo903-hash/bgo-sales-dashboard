@@ -29,6 +29,7 @@ from src.parser import (
 )
 from src.validator import ValidationError, run_all_validations
 from src.aggregator import build_dashboard_json
+from src.promotion import build_promotion
 from src.utils import BRANCHES, format_won, format_period
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -199,6 +200,30 @@ def main():
     print()
     print("목표까지")
     print(format_won(max(company["target_total"] - company["actual_total"], 0)))
+    print()
+    print(SUB_LINE)
+    print()
+
+    # [PROMOTION] 4분기 프로모션 누적 순위 (기간 내 월별 파일 전체 합산)
+    promo_warnings = []
+    try:
+        promotion = build_promotion(DATA_DIR, promo_warnings)
+    except ParserNotReadyError as e:
+        fail("프로모션 집계 오류", str(e))
+    dashboard["promotion"] = promotion
+
+    print("[PROMOTION]")
+    print()
+    if promotion:
+        print(f"{promotion['title']} ({', '.join(promotion['months'])} 누적)")
+        for key in ("staff", "heads"):
+            top = promotion[key]["ranking"][:3]
+            print(f"{promotion[key]['label']}: " + ", ".join(
+                f"{r['rank']}위 {r['name']}({r['branch_name']}) {format_won(r['sales'])}" for r in top))
+    else:
+        print("프로모션 기간 파일 없음 - 생략")
+    for w in promo_warnings:
+        print(w)
     print()
     print(SUB_LINE)
     print()
