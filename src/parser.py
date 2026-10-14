@@ -36,7 +36,7 @@ openpyxl로 직접 열어 Sheet 구성(매출/매출순위/페이롤), 병합 �
 import os
 from collections import defaultdict
 
-from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 
 from .utils import BRANCHES, parse_filename
 
@@ -247,12 +247,35 @@ def _recompute_new_renew(ws) -> dict:
     return result
 
 
+def _load_values_workbook(file_path: str):
+    """
+    값(수식 결과)만 필요하므로 data_only=True로 연다.
+    Excel이 아닌 프로그램에서 저장되어 스타일 정보가 어긋난 파일은 openpyxl의 일반 모드가
+    IndexError로 열지 못하므로, 이 경우 값만 읽는 read_only 모드로 읽어 메모리 워크북에 복사한다.
+    """
+    try:
+        return load_workbook(filename=file_path, data_only=True)
+    except IndexError:
+        src = load_workbook(filename=file_path, data_only=True, read_only=True)
+        dst = Workbook()
+        dst.remove(dst.active)
+        for name in src.sheetnames:
+            out = dst.create_sheet(name)
+            for r, row in enumerate(src[name].iter_rows(min_row=1, values_only=True), start=1):
+                for c, value in enumerate(row, start=1):
+                    if value is not None:
+                        out.cell(row=r, column=c, value=value)
+        src.close()
+        dst._style_fallback = True
+        return dst
+
+
 def extract_branch_data(file_path: str, branch_no: int) -> dict:
     """지점 Excel 1개의 [매출] Sheet에서 표준 데이터 항목을 추출한다."""
-    wb = load_workbook(filename=file_path, data_only=True)
+    wb = _load_values_workbook(file_path)
     ws = _require_sheet(wb, SHEET_SALES, file_path)
 
-    missing = [addr for addr in REQUIRED_CELLS if ws[addr].value is None]
+    missing =[addr for addr in REQUIRED_CELLS if ws[addr].value is None]
     if missing:
         raise ParserNotReadyError(
             f"'{os.path.basename(file_path)}'의 [매출] Sheet에서 다음 셀 값을 찾을 수 없습니다: "
@@ -266,6 +289,11 @@ def extract_branch_data(file_path: str, branch_no: int) -> dict:
     recomputed = _recompute_new_renew(ws)
     new_renew = {}
     notes = []
+    if getattr(wb, "_style_fallback", False):
+        notes.append(
+            f"WARNING: {BRANCHES[branch_no]}점 파일의 서식 정보가 손상되어 값만 읽는 방식으로 처리했습니다. "
+            "(숫자는 그대로이며, 담당자가 엑셀에서 열어 다시 저장해 올리면 해결됩니다)"
+        )
     for key, addr in NEW_RENEW_CELLS.items():
         saved = ws[addr].value
         if saved != recomputed[key]:
@@ -305,7 +333,7 @@ def extract_pt_ranking(file_path: str, branch_no: int) -> list:
     [매출순위] Sheet에서 트레이너별 PT 개인매출을 추출한다.
     D열(성명)이 비어 있는 슬롯(미배정)은 제외한다.
     """
-    wb = load_workbook(filename=file_path, data_only=True)
+    wb = _load_values_workbook(file_path)
     ws = _require_sheet(wb, SHEET_PT_RANKING, file_path)
 
     branch_name = BRANCHES[branch_no]
@@ -342,7 +370,7 @@ def extract_walkin_pt_sales(file_path: str) -> dict:
     [매출] 상세 거래 내역 중 비고(V열) 또는 기타(F열)에 '워크인'이 적힌 행의
     PT 매출을 담당자(H열)별로 합산한다. 반환: {담당자: 금액}
     """
-    wb = load_workbook(filename=file_path, data_only=True)
+    wb = _load_values_workbook(file_path)
     ws = _require_sheet(wb, SHEET_SALES, file_path)
 
     result = defaultdict(float)
