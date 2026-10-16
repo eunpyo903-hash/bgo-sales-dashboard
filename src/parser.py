@@ -221,7 +221,8 @@ def _is_num(value) -> bool:
 def _recompute_new_renew(ws) -> dict:
     """
     상세 거래 내역(15행~)에서 신규/재등록 집계를 직접 다시 센다.
-    Excel의 K8:U8 수식(SUBTOTAL, 필터로 숨겨진 행 제외)과 같은 규칙이다.
+    Excel의 K8:U8 수식은 SUBTOTAL이라 담당자·날짜 필터로 숨겨진 행을 빼고 세지만,
+    지점 전체 집계에는 필터 상태가 영향을 주면 안 되므로 숨겨진 행도 모두 포함한다.
       FC 건수: G열이 신규/재등록인 행 중 D열(회원권 기간)이 숫자인 행 수
       PT 건수: G열이 신규/재등록인 행 중 E열(PT 세션)이 숫자인 행 수
       FC 매출: I,J,K열 합 / PT 매출: O,P,Q열 합
@@ -230,7 +231,7 @@ def _recompute_new_renew(ws) -> dict:
     for key, label in (("new", "신규"), ("renew", "재등록")):
         fc_count = fc_sales = pt_count = pt_sales = 0
         for r in range(DETAIL_START_ROW, 515):
-            if ws.row_dimensions[r].hidden or ws.cell(row=r, column=7).value != label:
+            if ws.cell(row=r, column=7).value != label:
                 continue
             if _is_num(ws.cell(row=r, column=4).value):
                 fc_count += 1
@@ -289,6 +290,12 @@ def extract_branch_data(file_path: str, branch_no: int) -> dict:
     recomputed = _recompute_new_renew(ws)
     new_renew = {}
     notes = []
+    hidden_rows = sum(1 for r in range(DETAIL_START_ROW, 515) if ws.row_dimensions[r].hidden)
+    if hidden_rows:
+        notes.append(
+            f"WARNING: {BRANCHES[branch_no]}점 파일에 필터로 숨겨진 행이 {hidden_rows}개 있습니다. "
+            "신규/재등록은 숨김 행까지 포함해 재계산했습니다. (담당자께 필터 해제 후 저장 안내 권장)"
+        )
     if getattr(wb, "_style_fallback", False):
         notes.append(
             f"WARNING: {BRANCHES[branch_no]}점 파일의 서식 정보가 손상되어 값만 읽는 방식으로 처리했습니다. "

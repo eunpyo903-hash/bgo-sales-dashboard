@@ -1,7 +1,7 @@
 {
   "period": "2026-10",
   "reference_date": "2026-10-15",
-  "generated_at": "2026-10-16 13:36",
+  "generated_at": "2026-10-16 13:38",
   "company": {
     "target_total": 611000000,
     "actual_total": 137152820,
@@ -12,14 +12,14 @@
     "target_pt": 383000000.0,
     "actual_pt": 83195920,
     "rate_pt": 21.7,
-    "fc_new_count": 74,
-    "fc_new_sales": 17185000,
-    "fc_renew_count": 81,
-    "fc_renew_sales": 25448500,
-    "pt_new_count": 37,
-    "pt_new_sales": 33998480,
-    "pt_renew_count": 32,
-    "pt_renew_sales": 44684900
+    "fc_new_count": 87,
+    "fc_new_sales": 19422000,
+    "fc_renew_count": 90,
+    "fc_renew_sales": 28492500,
+    "pt_new_count": 40,
+    "pt_new_sales": 36971120,
+    "pt_renew_count": 33,
+    "pt_renew_sales": 46184900
   },
   "branches": [
     {
@@ -55,14 +55,14 @@
       "rate_fc": 14.8,
       "rate_pt": 14.3,
       "rate_total": 14.5,
-      "fc_new_count": 0,
-      "fc_new_sales": 0,
-      "fc_renew_count": 0,
-      "fc_renew_sales": 0,
-      "pt_new_count": 4,
-      "pt_new_sales": 2600000,
-      "pt_renew_count": 3,
-      "pt_renew_sales": 3390000
+      "fc_new_count": 13,
+      "fc_new_sales": 2237000,
+      "fc_renew_count": 9,
+      "fc_renew_sales": 3044000,
+      "pt_new_count": 7,
+      "pt_new_sales": 5572640,
+      "pt_renew_count": 4,
+      "pt_renew_sales": 4890000
     },
     {
       "branch_no": 3,
