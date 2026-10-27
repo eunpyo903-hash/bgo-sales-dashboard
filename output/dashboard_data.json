@@ -1,17 +1,17 @@
 {
   "period": "2026-10",
   "reference_date": "2026-10-26",
-  "generated_at": "2026-10-27 13:48",
+  "generated_at": "2026-10-27 13:53",
   "company": {
     "target_total": 604000000,
-    "actual_total": 255154321,
-    "rate_total": 42.2,
+    "actual_total": 263806321,
+    "rate_total": 43.7,
     "target_fc": 228000000.0,
     "actual_fc": 98521500,
     "rate_fc": 43.2,
     "target_pt": 376000000.0,
-    "actual_pt": 156632821,
-    "rate_pt": 41.7,
+    "actual_pt": 165284821,
+    "rate_pt": 44.0,
     "fc_new_count": 147,
     "fc_new_sales": 34283800,
     "fc_renew_count": 168,
@@ -71,11 +71,11 @@
       "target_pt": 70000000.0,
       "target_total": 113000000,
       "actual_fc": 14048900,
-      "actual_pt": 28857791,
-      "actual_total": 42906691,
+      "actual_pt": 37509791,
+      "actual_total": 51558691,
       "rate_fc": 32.7,
-      "rate_pt": 41.2,
-      "rate_total": 38.0,
+      "rate_pt": 53.6,
+      "rate_total": 45.6,
       "fc_new_count": 17,
       "fc_new_sales": 4762800,
       "fc_renew_count": 25,
@@ -197,6 +197,18 @@
     },
     {
       "rank": 3,
+      "branch_no": 3,
+      "branch_name": "대치",
+      "target_total": 113000000,
+      "actual_total": 51558691,
+      "rate_total": 45.6,
+      "actual_fc": 14048900,
+      "rate_fc": 32.7,
+      "actual_pt": 37509791,
+      "rate_pt": 53.6
+    },
+    {
+      "rank": 4,
       "branch_no": 5,
       "branch_name": "장안",
       "target_total": 110000000,
@@ -206,18 +218,6 @@
       "rate_fc": 47.4,
       "actual_pt": 25651790,
       "rate_pt": 39.5
-    },
-    {
-      "rank": 4,
-      "branch_no": 3,
-      "branch_name": "대치",
-      "target_total": 113000000,
-      "actual_total": 42906691,
-      "rate_total": 38.0,
-      "actual_fc": 14048900,
-      "rate_fc": 32.7,
-      "actual_pt": 28857791,
-      "rate_pt": 41.2
     },
     {
       "rank": 5,
@@ -571,6 +571,22 @@
       "branch_no": 3,
       "branch_name": "대치",
       "sales": -1080000
+    }
+  ],
+  "adjustments": [
+    {
+      "branch_no": 3,
+      "branch_name": "대치",
+      "field": "PT",
+      "amount": 3850000,
+      "note": "지점 파일 미입력분 (사용자 확인 후 수기 반영)"
+    },
+    {
+      "branch_no": 3,
+      "branch_name": "대치",
+      "field": "PT",
+      "amount": 4802000,
+      "note": "지점 파일 미입력분 (사용자 확인 후 수기 반영)"
     }
   ],
   "promotion": {

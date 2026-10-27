@@ -387,6 +387,7 @@
       <div>데이터 기준: <b id="meta-period">-</b></div>
       <div>최종 업데이트: <b id="meta-updated">-</b></div>
     </div>
+    <div id="adjust-note" style="display:none;margin-top:8px;font-size:12px;color:var(--text-sub);"></div>
   </header>
 
   <div id="empty-state" class="empty-state" style="display:none;">
@@ -593,6 +594,17 @@
     const refDate = (data.reference_date || data.period || "-").replace(/-/g, ".");
     document.getElementById("meta-period").textContent = refDate;
     document.getElementById("meta-updated").textContent = data.generated_at || "-";
+
+    const note = document.getElementById("adjust-note");
+    const adj = data.adjustments || [];
+    if (adj.length) {
+      const total = adj.reduce(function (s, a) { return s + a.amount; }, 0);
+      note.textContent = "※ " + adj[0].branch_name + "점 " + adj[0].field + " 매출 " +
+        formatWon(total) + "은 지점 파일 미입력분을 확인 후 수기 반영한 금액입니다.";
+      note.style.display = "block";
+    } else {
+      note.style.display = "none";
+    }
   }
 
   function renderBranchCards(data) {

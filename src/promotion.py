@@ -14,6 +14,7 @@
   적힌 행의 PT 매출(O,P,Q,T열)을 해당 담당자 매출에서 뺀다.
 """
 
+from .adjustments import EXCLUDED_STAFF
 from .parser import extract_pt_ranking, extract_walkin_pt_sales, select_files_for_month
 from .utils import BRANCHES
 
@@ -73,6 +74,8 @@ def build_promotion(data_dir: str, warnings: list) -> dict:
         for branch_no, file_info in sorted(files.items()):
             walkin = extract_walkin_pt_sales(file_info["path"])
             for row in extract_pt_ranking(file_info["path"], branch_no):
+                if row["name"] in EXCLUDED_STAFF:
+                    continue
                 key = (branch_no, row["name"])
                 entry = totals.setdefault(key, {
                     "name": row["name"],

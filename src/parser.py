@@ -335,6 +335,17 @@ def extract_branch_data(file_path: str, branch_no: int) -> dict:
     }
 
 
+def pt_amount_in_detail(file_path: str, amount) -> bool:
+    """[매출] 상세 거래 내역의 PT 매출(O,P,Q열)에 해당 금액이 이미 입력되어 있는지 확인한다."""
+    ws = _require_sheet(_load_values_workbook(file_path), SHEET_SALES, file_path)
+    for r in range(DETAIL_START_ROW, 515):
+        for c in (15, 16, 17):
+            value = ws.cell(row=r, column=c).value
+            if _is_num(value) and value == amount:
+                return True
+    return False
+
+
 def extract_pt_ranking(file_path: str, branch_no: int) -> list:
     """
     [매출순위] Sheet에서 트레이너별 PT 개인매출을 추출한다.

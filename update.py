@@ -26,7 +26,9 @@ from src.parser import (
     select_latest_files,
     extract_branch_data,
     extract_pt_ranking,
+    pt_amount_in_detail,
 )
+from src.adjustments import EXCLUDED_STAFF, apply_manual_adjustments
 from src.validator import ValidationError, run_all_validations
 from src.aggregator import build_dashboard_json
 from src.promotion import build_promotion
@@ -156,6 +158,19 @@ def main():
     print(SUB_LINE)
     print()
 
+    # [ADJUSTMENT] 파일 미입력분 수기 반영 + 순위 제외 담당자 필터
+    adjustments, adjust_messages = apply_manual_adjustments(
+        period_label, branch_data, selected_files, pt_amount_in_detail)
+    trainer_rows = [r for r in trainer_rows if r["name"] not in EXCLUDED_STAFF]
+    if adjust_messages:
+        print("[ADJUSTMENT]")
+        print()
+        for m in adjust_messages:
+            print(m)
+        print()
+        print(SUB_LINE)
+        print()
+
     # [VALIDATION]
     print("[VALIDATION]")
     print()
@@ -185,6 +200,7 @@ def main():
 
     # [COMPANY]
     dashboard = build_dashboard_json(period_label, branch_data, trainer_rows, reference_date)
+    dashboard["adjustments"] = adjustments
     company = dashboard["company"]
 
     print("[COMPANY]")
