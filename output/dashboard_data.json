@@ -1,25 +1,25 @@
 {
   "period": "2026-10",
   "reference_date": "2026-10-27",
-  "generated_at": "2026-10-28 13:38",
+  "generated_at": "2026-10-28 14:19",
   "company": {
     "target_total": 604000000,
-    "actual_total": 276695221,
-    "rate_total": 45.8,
+    "actual_total": 279995221,
+    "rate_total": 46.4,
     "target_fc": 228000000.0,
-    "actual_fc": 104551500,
-    "rate_fc": 45.9,
+    "actual_fc": 105937500,
+    "rate_fc": 46.5,
     "target_pt": 376000000.0,
-    "actual_pt": 172143721,
-    "rate_pt": 45.8,
-    "fc_new_count": 155,
-    "fc_new_sales": 35672800,
-    "fc_renew_count": 181,
-    "fc_renew_sales": 57885100,
+    "actual_pt": 174057721,
+    "rate_pt": 46.3,
+    "fc_new_count": 156,
+    "fc_new_sales": 36068800,
+    "fc_renew_count": 183,
+    "fc_renew_sales": 58809100,
     "pt_new_count": 73,
     "pt_new_sales": 55853920,
-    "pt_renew_count": 78,
-    "pt_renew_sales": 108845901
+    "pt_renew_count": 80,
+    "pt_renew_sales": 110759901
   },
   "branches": [
     {
@@ -112,20 +112,20 @@
       "target_fc": 45000000,
       "target_pt": 65000000,
       "target_total": 110000000,
-      "actual_fc": 21349400,
-      "actual_pt": 25651790,
-      "actual_total": 47001190,
-      "rate_fc": 47.4,
-      "rate_pt": 39.5,
-      "rate_total": 42.7,
-      "fc_new_count": 28,
-      "fc_new_sales": 9245000,
-      "fc_renew_count": 29,
-      "fc_renew_sales": 10378000,
+      "actual_fc": 22735400,
+      "actual_pt": 27565790,
+      "actual_total": 50301190,
+      "rate_fc": 50.5,
+      "rate_pt": 42.4,
+      "rate_total": 45.7,
+      "fc_new_count": 29,
+      "fc_new_sales": 9641000,
+      "fc_renew_count": 31,
+      "fc_renew_sales": 11302000,
       "pt_new_count": 9,
       "pt_new_sales": 9580890,
-      "pt_renew_count": 11,
-      "pt_renew_sales": 16031000
+      "pt_renew_count": 13,
+      "pt_renew_sales": 17945000
     },
     {
       "branch_no": 6,
@@ -212,12 +212,12 @@
       "branch_no": 5,
       "branch_name": "장안",
       "target_total": 110000000,
-      "actual_total": 47001190,
-      "rate_total": 42.7,
-      "actual_fc": 21349400,
-      "rate_fc": 47.4,
-      "actual_pt": 25651790,
-      "rate_pt": 39.5
+      "actual_total": 50301190,
+      "rate_total": 45.7,
+      "actual_fc": 22735400,
+      "rate_fc": 50.5,
+      "actual_pt": 27565790,
+      "rate_pt": 42.4
     },
     {
       "rank": 5,
@@ -430,56 +430,56 @@
       "name": "송림명",
       "branch_no": 5,
       "branch_name": "장안",
-      "sales": 2871900
+      "sales": 3201900
     },
     {
       "rank": 26,
+      "name": "한수임",
+      "branch_no": 5,
+      "branch_name": "장안",
+      "sales": 2959000
+    },
+    {
+      "rank": 27,
       "name": "김영인",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 2600000
     },
     {
-      "rank": 27,
+      "rank": 28,
       "name": "두민기",
       "branch_no": 7,
       "branch_name": "삼전",
       "sales": 2479900
     },
     {
-      "rank": 28,
+      "rank": 29,
       "name": "김재민",
       "branch_no": 7,
       "branch_name": "삼전",
       "sales": 2400000
     },
     {
-      "rank": 29,
+      "rank": 30,
       "name": "김원준",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 2130000
     },
     {
-      "rank": 30,
+      "rank": 31,
       "name": "황도영",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 1800000
     },
     {
-      "rank": 31,
+      "rank": 32,
       "name": "배기범",
       "branch_no": 6,
       "branch_name": "가락",
       "sales": 1617000
-    },
-    {
-      "rank": 32,
-      "name": "한수임",
-      "branch_no": 5,
-      "branch_name": "장안",
-      "sales": 1375000
     },
     {
       "rank": 33,
@@ -850,15 +850,30 @@
           "branch_no": 5,
           "branch_name": "장안",
           "title": "시니어",
-          "gross_sales": 2871900,
+          "gross_sales": 3201900,
           "walkin_sales": 0,
           "monthly": {
-            "2610": 2871900
+            "2610": 3201900
           },
-          "sales": 2871900,
+          "sales": 3201900,
           "rank": 17,
           "prize": 0,
-          "gap_to_prev": 422100
+          "gap_to_prev": 92100
+        },
+        {
+          "name": "한수임",
+          "branch_no": 5,
+          "branch_name": "장안",
+          "title": "팀원",
+          "gross_sales": 2959000,
+          "walkin_sales": 0,
+          "monthly": {
+            "2610": 2959000
+          },
+          "sales": 2959000,
+          "rank": 18,
+          "prize": 0,
+          "gap_to_prev": 242900
         },
         {
           "name": "김영인",
@@ -871,9 +886,9 @@
             "2610": 2600000
           },
           "sales": 2600000,
-          "rank": 18,
+          "rank": 19,
           "prize": 0,
-          "gap_to_prev": 271900
+          "gap_to_prev": 359000
         },
         {
           "name": "김재민",
@@ -886,7 +901,7 @@
             "2610": 2400000
           },
           "sales": 2400000,
-          "rank": 19,
+          "rank": 20,
           "prize": 0,
           "gap_to_prev": 200000
         },
@@ -901,7 +916,7 @@
             "2610": 1800000
           },
           "sales": 1800000,
-          "rank": 20,
+          "rank": 21,
           "prize": 0,
           "gap_to_prev": 600000
         },
@@ -916,24 +931,9 @@
             "2610": 1617000
           },
           "sales": 1617000,
-          "rank": 21,
-          "prize": 0,
-          "gap_to_prev": 183000
-        },
-        {
-          "name": "한수임",
-          "branch_no": 5,
-          "branch_name": "장안",
-          "title": "팀원",
-          "gross_sales": 1375000,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 1375000
-          },
-          "sales": 1375000,
           "rank": 22,
           "prize": 0,
-          "gap_to_prev": 242000
+          "gap_to_prev": 183000
         },
         {
           "name": "이윤석",
@@ -948,7 +948,7 @@
           "sales": 1320000,
           "rank": 23,
           "prize": 0,
-          "gap_to_prev": 55000
+          "gap_to_prev": 297000
         },
         {
           "name": "이기현",
