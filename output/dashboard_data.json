@@ -1,25 +1,25 @@
 {
   "period": "2026-10",
   "reference_date": "2026-10-28",
-  "generated_at": "2026-10-29 13:29",
+  "generated_at": "2026-10-29 13:38",
   "company": {
     "target_total": 604000000,
-    "actual_total": 297642621,
+    "actual_total": 297642620,
     "rate_total": 49.3,
-    "target_fc": 228000000.0,
+    "target_fc": 228000000,
     "actual_fc": 113706000,
     "rate_fc": 49.9,
-    "target_pt": 376000000.0,
-    "actual_pt": 183936621,
+    "target_pt": 376000000,
+    "actual_pt": 183936620,
     "rate_pt": 48.9,
-    "fc_new_count": 163,
-    "fc_new_sales": 37092800,
+    "fc_new_count": 162,
+    "fc_new_sales": 37040000,
     "fc_renew_count": 197,
     "fc_renew_sales": 63361100,
-    "pt_new_count": 77,
-    "pt_new_sales": 61242820,
-    "pt_renew_count": 85,
-    "pt_renew_sales": 115249901
+    "pt_new_count": 76,
+    "pt_new_sales": 61074820,
+    "pt_renew_count": 87,
+    "pt_renew_sales": 123901900
   },
   "branches": [
     {
@@ -67,23 +67,23 @@
     {
       "branch_no": 3,
       "branch_name": "대치",
-      "target_fc": 43000000.0,
-      "target_pt": 70000000.0,
+      "target_fc": 43000000,
+      "target_pt": 70000000,
       "target_total": 113000000,
       "actual_fc": 20157900,
-      "actual_pt": 38349791,
-      "actual_total": 58507691,
+      "actual_pt": 38349790,
+      "actual_total": 58507690,
       "rate_fc": 46.9,
       "rate_pt": 54.8,
       "rate_total": 51.8,
-      "fc_new_count": 20,
-      "fc_new_sales": 5558800,
+      "fc_new_count": 19,
+      "fc_new_sales": 5506000,
       "fc_renew_count": 35,
       "fc_renew_sales": 9945600,
-      "pt_new_count": 10,
-      "pt_new_sales": 4801790,
-      "pt_renew_count": 18,
-      "pt_renew_sales": 26144001
+      "pt_new_count": 9,
+      "pt_new_sales": 4633790,
+      "pt_renew_count": 20,
+      "pt_renew_sales": 34796000
     },
     {
       "branch_no": 4,
@@ -200,11 +200,11 @@
       "branch_no": 3,
       "branch_name": "대치",
       "target_total": 113000000,
-      "actual_total": 58507691,
+      "actual_total": 58507690,
       "rate_total": 51.8,
       "actual_fc": 20157900,
       "rate_fc": 46.9,
-      "actual_pt": 38349791,
+      "actual_pt": 38349790,
       "rate_pt": 54.8
     },
     {
@@ -297,7 +297,7 @@
       "name": "전현아",
       "branch_no": 3,
       "branch_name": "대치",
-      "sales": 7299901
+      "sales": 7299900
     },
     {
       "rank": 7,
@@ -573,22 +573,7 @@
       "sales": -1080000
     }
   ],
-  "adjustments": [
-    {
-      "branch_no": 3,
-      "branch_name": "대치",
-      "field": "PT",
-      "amount": 3850000,
-      "note": "지점 파일 미입력분 (사용자 확인 후 수기 반영)"
-    },
-    {
-      "branch_no": 3,
-      "branch_name": "대치",
-      "field": "PT",
-      "amount": 4802000,
-      "note": "지점 파일 미입력분 (사용자 확인 후 수기 반영)"
-    }
-  ],
+  "adjustments": [],
   "promotion": {
     "title": "2026 4분기 프로모션",
     "period_label": "2026.10.01 ~ 2026.12.31",
@@ -596,7 +581,7 @@
       "2026-10"
     ],
     "walkin_rule": "상세 거래 내역 비고/기타 칸에 '워크인' 표기된 PT 매출 제외",
-    "walkin_total": 3978000,
+    "walkin_total": 3810000,
     "staff": {
       "label": "PT · PT시니어",
       "prizes": [
@@ -685,15 +670,15 @@
           "branch_no": 3,
           "branch_name": "대치",
           "title": "시니어",
-          "gross_sales": 7299901,
+          "gross_sales": 7299900,
           "walkin_sales": 840000,
           "monthly": {
-            "2610": 6459901
+            "2610": 6459900
           },
-          "sales": 6459901,
+          "sales": 6459900,
           "rank": 6,
           "prize": 0,
-          "gap_to_prev": 600099
+          "gap_to_prev": 600100
         },
         {
           "name": "이재환",
@@ -708,7 +693,7 @@
           "sales": 5834000,
           "rank": 7,
           "prize": 0,
-          "gap_to_prev": 625901
+          "gap_to_prev": 625900
         },
         {
           "name": "안도모",
@@ -1235,14 +1220,14 @@
           "branch_name": "대치",
           "title": "팀장",
           "gross_sales": 3600000,
-          "walkin_sales": 168000,
+          "walkin_sales": 0,
           "monthly": {
-            "2610": 3432000
+            "2610": 3600000
           },
-          "sales": 3432000,
+          "sales": 3600000,
           "rank": 8,
           "prize": 0,
-          "gap_to_prev": 368000
+          "gap_to_prev": 200000
         },
         {
           "name": "김원준",
@@ -1257,7 +1242,7 @@
           "sales": 2850000,
           "rank": 9,
           "prize": 0,
-          "gap_to_prev": 582000
+          "gap_to_prev": 750000
         },
         {
           "name": "김진웅",

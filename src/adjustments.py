@@ -12,12 +12,9 @@ from .utils import BRANCHES, safe_div_rate
 
 EXCLUDED_STAFF = {"이은표"}
 
-MANUAL_ADJUSTMENTS = [
-    {"period": "2026-10", "branch_no": 3, "field": "pt", "amount": 3_850_000,
-     "note": "지점 파일 미입력분 (사용자 확인 후 수기 반영)"},
-    {"period": "2026-10", "branch_no": 3, "field": "pt", "amount": 4_802_000,
-     "note": "지점 파일 미입력분 (사용자 확인 후 수기 반영)"},
-]
+# 2026-10 대치점 PT 3,850,000원·4,802,000원은 10/29 수정 파일에 정식 입력되어 삭제함.
+# 예: {"period": "2026-10", "branch_no": 3, "field": "pt", "amount": 1_000_000, "note": "..."}
+MANUAL_ADJUSTMENTS = []
 
 
 def apply_manual_adjustments(period: str, branch_data: dict, selected_files: dict,
