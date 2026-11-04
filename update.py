@@ -193,7 +193,18 @@ def main():
     print()
 
     # 데이터 기준일: 지점별 상세 거래내역 중 가장 최근 거래일 (Excel 원본 기준)
-    last_days = [d["last_transaction_day"] for d in branch_data.values() if d.get("last_transaction_day")]
+    # 당월 데이터인데 오늘 날짜보다 뒤인 거래일은 입력 오류로 보고 기준일 계산에서만 제외한다 (금액은 그대로 집계)
+    today = datetime.now()
+    last_days = []
+    for no, d in branch_data.items():
+        day = d.get("last_transaction_day")
+        if not day:
+            continue
+        if period_label == today.strftime("%Y-%m") and day > today.day:
+            print(f"WARNING: {BRANCHES[no]}점 거래일 {day}일이 오늘({today.day}일)보다 뒤입니다. "
+                  "날짜 입력 오류로 보여 기준일 계산에서 제외했습니다. (금액은 그대로 집계)")
+            continue
+        last_days.append(day)
     reference_date = None
     if last_days:
         reference_date = f"{period_label}-{max(last_days):02d}"
