@@ -387,12 +387,13 @@
       <div>데이터 기준: <b id="meta-period">-</b></div>
       <div>최종 업데이트: <b id="meta-updated">-</b></div>
     </div>
+    <div id="scope-note" style="display:none;margin-top:8px;font-size:12px;color:var(--text-sub);"></div>
     <div id="adjust-note" style="display:none;margin-top:8px;font-size:12px;color:var(--text-sub);"></div>
   </header>
 
   <div id="empty-state" class="empty-state" style="display:none;">
     아직 표시할 매출 데이터가 없습니다.<br><br>
-    <code>data</code> 폴더에 7개 지점 총매출 Excel 파일을 넣고<br>
+    <code>data</code> 폴더에 지점별 총매출 Excel 파일을 넣고<br>
     <code>python update.py</code> 를 실행하면 이 화면이 자동으로 채워집니다.
   </div>
 
@@ -594,6 +595,14 @@
     const refDate = (data.reference_date || data.period || "-").replace(/-/g, ".");
     document.getElementById("meta-period").textContent = refDate;
     document.getElementById("meta-updated").textContent = data.generated_at || "-";
+
+    const scope = document.getElementById("scope-note");
+    if (data.scope_note) {
+      scope.textContent = "※ " + data.scope_note + "입니다.";
+      scope.style.display = "block";
+    } else {
+      scope.style.display = "none";
+    }
 
     const note = document.getElementById("adjust-note");
     const adj = data.adjustments || [];

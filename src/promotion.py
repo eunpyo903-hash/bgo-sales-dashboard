@@ -16,7 +16,7 @@
 
 from .adjustments import EXCLUDED_STAFF
 from .parser import extract_pt_ranking, extract_walkin_pt_sales, select_files_for_month
-from .utils import BRANCHES
+from .utils import BRANCHES, EXCLUDED_BRANCHES
 
 PROMO_TITLE = "2026 4분기 프로모션"
 PROMO_PERIOD_LABEL = "2026.10.01 ~ 2026.12.31"
@@ -72,6 +72,8 @@ def build_promotion(data_dir: str, warnings: list) -> dict:
         months_used.append(yymm)
 
         for branch_no, file_info in sorted(files.items()):
+            if branch_no in EXCLUDED_BRANCHES:
+                continue
             walkin = extract_walkin_pt_sales(file_info["path"])
             for row in extract_pt_ranking(file_info["path"], branch_no):
                 if row["name"] in EXCLUDED_STAFF:
@@ -102,6 +104,8 @@ def build_promotion(data_dir: str, warnings: list) -> dict:
 
     heads = []
     for no, names in PT_HEADS.items():
+        if no in EXCLUDED_BRANCHES:
+            continue
         for name in names:
             entry = totals.get((no, name))
             if entry is None:

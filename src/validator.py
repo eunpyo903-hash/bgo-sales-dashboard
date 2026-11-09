@@ -5,7 +5,7 @@ Dashboard 생성 전에 반드시 실행한다.
 빈 값을 임의로 0원으로 처리하지 않는다.
 """
 
-from .utils import BRANCHES
+from .utils import ACTIVE_BRANCHES, BRANCHES
 
 REQUIRED_FIELDS = [
     "target_fc", "target_pt", "target_total",
@@ -27,7 +27,7 @@ class ValidationError(Exception):
 
 def validate_files_present(selected_files: dict):
     """7개 지점 파일이 모두 있는지 확인한다. 하나라도 없으면 ValidationError."""
-    missing = [no for no in BRANCHES if no not in selected_files]
+    missing = [no for no in ACTIVE_BRANCHES if no not in selected_files]
     if missing:
         missing_names = ", ".join(BRANCHES[no] for no in missing)
         raise ValidationError(f"{missing_names}점 총매출 파일이 없습니다.")

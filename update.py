@@ -32,7 +32,7 @@ from src.adjustments import EXCLUDED_STAFF, apply_manual_adjustments
 from src.validator import ValidationError, run_all_validations
 from src.aggregator import build_dashboard_json
 from src.promotion import build_promotion
-from src.utils import BRANCHES, format_won, format_period
+from src.utils import ACTIVE_BRANCHES, BRANCHES, format_won, format_period
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -105,13 +105,13 @@ def main():
     print("[FILE CHECK]")
     print()
     ok_count = 0
-    for no, name in BRANCHES.items():
+    for no, name in ACTIVE_BRANCHES.items():
         status = "OK" if no in selected_files else "MISSING"
         if status == "OK":
             ok_count += 1
         print(f"{no}. {name:<8} {status}")
     print()
-    print(f"{ok_count} / {len(BRANCHES)} FILES OK")
+    print(f"{ok_count} / {len(ACTIVE_BRANCHES)} FILES OK")
     print()
     print(SUB_LINE)
     print()
@@ -132,7 +132,7 @@ def main():
     branch_data = {}
     trainer_rows = []
     try:
-        for no, name in BRANCHES.items():
+        for no, name in ACTIVE_BRANCHES.items():
             file_info = selected_files[no]
             data = extract_branch_data(file_info["path"], no)
             branch_data[no] = data
@@ -212,6 +212,8 @@ def main():
     # [COMPANY]
     dashboard = build_dashboard_json(period_label, branch_data, trainer_rows, reference_date)
     dashboard["adjustments"] = adjustments
+    dashboard["scope_note"] = (
+        f"{len(ACTIVE_BRANCHES)}개 지점 기준 집계" if len(ACTIVE_BRANCHES) < len(BRANCHES) else None)
     company = dashboard["company"]
 
     print("[COMPANY]")
