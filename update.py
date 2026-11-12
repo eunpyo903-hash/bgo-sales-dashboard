@@ -31,7 +31,9 @@ from src.parser import (
 from src.adjustments import EXCLUDED_STAFF, apply_manual_adjustments
 from src.validator import ValidationError, run_all_validations
 from src.aggregator import build_dashboard_json
-from src.promotion import build_promotion
+from src.promotion import PT_HEADS, build_promotion
+
+RANKING_EXCLUDED_TITLES = {"매니저", "팀장"}
 from src.utils import ACTIVE_BRANCHES, BRANCHES, format_won, format_period
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -161,7 +163,13 @@ def main():
     # [ADJUSTMENT] 파일 미입력분 수기 반영 + 순위 제외 담당자 필터
     adjustments, adjust_messages = apply_manual_adjustments(
         period_label, branch_data, selected_files, pt_amount_in_detail)
-    trainer_rows = [r for r in trainer_rows if r["name"] not in EXCLUDED_STAFF]
+    # PT 개인매출 종합 순위: 매니저·팀장 직급과 PT부서장은 제외한다 (프로모션의 PT부서장 순위는 별도)
+    trainer_rows = [
+        r for r in trainer_rows
+        if r["name"] not in EXCLUDED_STAFF
+        and r.get("title") not in RANKING_EXCLUDED_TITLES
+        and r["name"] not in PT_HEADS.get(r["branch_no"], [])
+    ]
     if adjust_messages:
         print("[ADJUSTMENT]")
         print()

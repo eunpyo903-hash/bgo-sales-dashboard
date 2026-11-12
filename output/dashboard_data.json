@@ -1,7 +1,7 @@
 {
   "period": "2026-11",
   "reference_date": "2026-11-11",
-  "generated_at": "2026-11-12 14:04",
+  "generated_at": "2026-11-12 14:22",
   "company": {
     "target_total": 524000000,
     "actual_total": 101012600,
@@ -226,265 +226,195 @@
   "pt_ranking": [
     {
       "rank": 1,
-      "name": "변재용",
-      "branch_no": 2,
-      "branch_name": "선정릉",
-      "sales": 6480000
-    },
-    {
-      "rank": 2,
       "name": "김준석",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 6130000
     },
     {
-      "rank": 3,
+      "rank": 2,
       "name": "김영우",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 5423000
     },
     {
-      "rank": 4,
-      "name": "배재민",
-      "branch_no": 3,
-      "branch_name": "대치",
-      "sales": 4600000
-    },
-    {
-      "rank": 5,
+      "rank": 3,
       "name": "김필구",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 4075000
     },
     {
-      "rank": 6,
-      "name": "윤휘용",
-      "branch_no": 7,
-      "branch_name": "삼전",
-      "sales": 4016000
-    },
-    {
-      "rank": 7,
+      "rank": 4,
       "name": "한어진",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 4004000
     },
     {
-      "rank": 8,
+      "rank": 5,
       "name": "최태원",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 3000000
     },
     {
-      "rank": 9,
+      "rank": 6,
       "name": "김민준",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 2940000
     },
     {
-      "rank": 10,
+      "rank": 7,
       "name": "최성욱",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 2500000
     },
     {
-      "rank": 11,
+      "rank": 8,
       "name": "이기현",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 2328000
     },
     {
-      "rank": 12,
+      "rank": 9,
       "name": "김민수",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 1980000
     },
     {
-      "rank": 13,
-      "name": "김원준",
-      "branch_no": 4,
-      "branch_name": "송파",
-      "sales": 1710000
-    },
-    {
-      "rank": 14,
-      "name": "두민기",
-      "branch_no": 7,
-      "branch_name": "삼전",
-      "sales": 1560000
-    },
-    {
-      "rank": 15,
+      "rank": 10,
       "name": "김재현",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 1100000
     },
     {
-      "rank": 16,
+      "rank": 11,
       "name": "안도모",
       "branch_no": 1,
       "branch_name": "역삼",
       "sales": 1098900
     },
     {
-      "rank": 17,
+      "rank": 12,
       "name": "전현아",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 790000
     },
     {
-      "rank": 18,
+      "rank": 13,
       "name": "황용선",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 780000
     },
     {
-      "rank": 19,
-      "name": "이초은",
-      "branch_no": 1,
-      "branch_name": "역삼",
-      "sales": 720000
-    },
-    {
-      "rank": 20,
-      "name": "장광희",
-      "branch_no": 2,
-      "branch_name": "선정릉",
-      "sales": 710900
-    },
-    {
-      "rank": 21,
+      "rank": 14,
       "name": "조건우",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 80000
     },
     {
-      "rank": 22,
-      "name": "황하늘",
-      "branch_no": 1,
-      "branch_name": "역삼",
-      "sales": 0
-    },
-    {
-      "rank": 23,
+      "rank": 15,
       "name": "진정경",
       "branch_no": 1,
       "branch_name": "역삼",
       "sales": 0
     },
     {
-      "rank": 24,
+      "rank": 16,
       "name": "김동옥",
       "branch_no": 1,
       "branch_name": "역삼",
       "sales": 0
     },
     {
-      "rank": 25,
+      "rank": 17,
       "name": "안재원",
       "branch_no": 1,
       "branch_name": "역삼",
       "sales": 0
     },
     {
-      "rank": 26,
+      "rank": 18,
       "name": "김영인",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 0
     },
     {
-      "rank": 27,
+      "rank": 19,
       "name": "전현동",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 0
     },
     {
-      "rank": 28,
-      "name": "이상훈",
-      "branch_no": 3,
-      "branch_name": "대치",
-      "sales": 0
-    },
-    {
-      "rank": 29,
+      "rank": 20,
       "name": "주상규",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 0
     },
     {
-      "rank": 30,
+      "rank": 21,
       "name": "김건우",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 0
     },
     {
-      "rank": 31,
+      "rank": 22,
       "name": "황도영",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 0
     },
     {
-      "rank": 32,
-      "name": "김진웅",
-      "branch_no": 5,
-      "branch_name": "장안",
-      "sales": 0
-    },
-    {
-      "rank": 33,
+      "rank": 23,
       "name": "송림명",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 0
     },
     {
-      "rank": 34,
+      "rank": 24,
       "name": "이윤석",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 0
     },
     {
-      "rank": 35,
+      "rank": 25,
       "name": "한수임",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 0
     },
     {
-      "rank": 36,
+      "rank": 26,
       "name": "정회민",
       "branch_no": 7,
       "branch_name": "삼전",
       "sales": 0
     },
     {
-      "rank": 37,
+      "rank": 27,
       "name": "이재환",
       "branch_no": 7,
       "branch_name": "삼전",
       "sales": 0
     },
     {
-      "rank": 38,
+      "rank": 28,
       "name": "김재민",
       "branch_no": 7,
       "branch_name": "삼전",
