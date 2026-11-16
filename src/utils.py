@@ -21,9 +21,9 @@ BRANCHES = {
 
 BRANCH_NAME_TO_NO = {name: no for no, name in BRANCHES.items()}
 
-# 집계·순위·프로모션에서 제외하는 지점 번호 (2026-11-09부터 가락점 제외).
+# 집계·순위·프로모션에서 제외하는 지점 번호 (2026-11-09부터 가락점, 2026-11-16부터 삼전점 제외).
 # 파일명 인식에는 BRANCHES 전체를 그대로 쓰고, 실제 파일 확인·집계에는 ACTIVE_BRANCHES만 쓴다.
-EXCLUDED_BRANCHES = {6}
+EXCLUDED_BRANCHES = {6, 7}
 ACTIVE_BRANCHES = {no: name for no, name in BRANCHES.items() if no not in EXCLUDED_BRANCHES}
 
 # 파일명 패턴 예: 2609_b_1_역삼점_총매출.xlsx
