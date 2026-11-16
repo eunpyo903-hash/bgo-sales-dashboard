@@ -12,6 +12,25 @@ from .utils import BRANCHES, safe_div_rate
 
 EXCLUDED_STAFF = {"이은표"}
 
+# 인사 변경: 이름 -> 새 소속 지점번호·직급. 지점 Excel의 [매출순위] 시트에 아직 예전 소속/직급으로
+# 남아 있어도, 순위·프로모션에서는 새 소속·직급으로 집계하고 기존 기록도 새 소속으로 합산한다.
+# 김진웅: 장안점 PT부서장(매니저) -> 2026-11-16부터 대치점 시니어
+PERSONNEL_CHANGES = {
+    "김진웅": {"branch_no": 3, "title": "시니어"},
+}
+
+
+def apply_personnel_changes(rows: list) -> list:
+    """트레이너 행(name, branch_no, branch_name, title ...)에 인사 변경을 적용한 새 리스트를 돌려준다."""
+    changed = []
+    for r in rows:
+        ch = PERSONNEL_CHANGES.get(r["name"])
+        if ch:
+            r = {**r, "branch_no": ch["branch_no"], "branch_name": BRANCHES[ch["branch_no"]],
+                 "title": ch["title"]}
+        changed.append(r)
+    return changed
+
 # 2026-10 대치점 PT 3,850,000원·4,802,000원은 10/29 수정 파일에 정식 입력되어 삭제함.
 # 예: {"period": "2026-10", "branch_no": 3, "field": "pt", "amount": 1_000_000, "note": "..."}
 MANUAL_ADJUSTMENTS = []

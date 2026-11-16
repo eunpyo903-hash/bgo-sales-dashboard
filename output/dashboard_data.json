@@ -1,7 +1,7 @@
 {
   "period": "2026-11",
   "reference_date": "2026-11-15",
-  "generated_at": "2026-11-16 13:02",
+  "generated_at": "2026-11-16 13:24",
   "company": {
     "target_total": 456000000,
     "actual_total": 118814800,
@@ -361,13 +361,20 @@
     },
     {
       "rank": 25,
+      "name": "김진웅",
+      "branch_no": 3,
+      "branch_name": "대치",
+      "sales": 0
+    },
+    {
+      "rank": 26,
       "name": "한수임",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 0
     },
     {
-      "rank": 26,
+      "rank": 27,
       "name": "한채아",
       "branch_no": 5,
       "branch_name": "장안",
@@ -729,6 +736,22 @@
           "gap_to_prev": 74000
         },
         {
+          "name": "김진웅",
+          "branch_no": 3,
+          "branch_name": "대치",
+          "title": "시니어",
+          "gross_sales": 3700000,
+          "walkin_sales": 0,
+          "monthly": {
+            "2610": 3700000,
+            "2611": 0
+          },
+          "sales": 3700000,
+          "rank": 22,
+          "prize": 0,
+          "gap_to_prev": 230000
+        },
+        {
           "name": "이기현",
           "branch_no": 3,
           "branch_name": "대치",
@@ -740,9 +763,9 @@
             "2611": 2328000
           },
           "sales": 3638000,
-          "rank": 22,
+          "rank": 23,
           "prize": 0,
-          "gap_to_prev": 292000
+          "gap_to_prev": 62000
         },
         {
           "name": "김건우",
@@ -756,7 +779,7 @@
             "2611": 0
           },
           "sales": 3302000,
-          "rank": 23,
+          "rank": 24,
           "prize": 0,
           "gap_to_prev": 336000
         },
@@ -771,7 +794,7 @@
             "2610": 3294000
           },
           "sales": 3294000,
-          "rank": 24,
+          "rank": 25,
           "prize": 0,
           "gap_to_prev": 8000
         },
@@ -786,7 +809,7 @@
             "2610": 80000
           },
           "sales": 80000,
-          "rank": 25,
+          "rank": 26,
           "prize": 0,
           "gap_to_prev": 3214000
         },
@@ -802,7 +825,7 @@
             "2611": 0
           },
           "sales": 0,
-          "rank": 26,
+          "rank": 27,
           "prize": 0,
           "gap_to_prev": 80000
         },
@@ -817,7 +840,7 @@
             "2611": 0
           },
           "sales": 0,
-          "rank": 26,
+          "rank": 27,
           "prize": 0,
           "gap_to_prev": 0
         },
@@ -832,7 +855,7 @@
             "2611": 0
           },
           "sales": 0,
-          "rank": 26,
+          "rank": 27,
           "prize": 0,
           "gap_to_prev": 0
         },
@@ -847,7 +870,7 @@
             "2610": -1080000
           },
           "sales": -1080000,
-          "rank": 29,
+          "rank": 30,
           "prize": 0,
           "gap_to_prev": 1080000
         }
@@ -941,22 +964,6 @@
           "gap_to_prev": 1461800
         },
         {
-          "name": "김원준",
-          "branch_no": 4,
-          "branch_name": "송파",
-          "title": "매니저",
-          "gross_sales": 6840000,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 5130000,
-            "2611": 1710000
-          },
-          "sales": 6840000,
-          "rank": 6,
-          "prize": 0,
-          "gap_to_prev": 1540000
-        },
-        {
           "name": "황하늘",
           "branch_no": 1,
           "branch_name": "역삼",
@@ -968,25 +975,9 @@
             "2611": 0
           },
           "sales": 4238900,
-          "rank": 7,
+          "rank": 6,
           "prize": 0,
-          "gap_to_prev": 2601100
-        },
-        {
-          "name": "김진웅",
-          "branch_no": 5,
-          "branch_name": "장안",
-          "title": "매니저",
-          "gross_sales": 3700000,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 3700000,
-            "2611": 0
-          },
-          "sales": 3700000,
-          "rank": 8,
-          "prize": 0,
-          "gap_to_prev": 538900
+          "gap_to_prev": 4141100
         }
       ]
     }

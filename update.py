@@ -28,7 +28,7 @@ from src.parser import (
     extract_pt_ranking,
     pt_amount_in_detail,
 )
-from src.adjustments import EXCLUDED_STAFF, apply_manual_adjustments
+from src.adjustments import EXCLUDED_STAFF, apply_manual_adjustments, apply_personnel_changes
 from src.validator import ValidationError, run_all_validations
 from src.aggregator import build_dashboard_json
 from src.promotion import PT_HEADS, build_promotion
@@ -163,6 +163,16 @@ def main():
     # [ADJUSTMENT] 파일 미입력분 수기 반영 + 순위 제외 담당자 필터
     adjustments, adjust_messages = apply_manual_adjustments(
         period_label, branch_data, selected_files, pt_amount_in_detail)
+    # 인사 변경 반영 후 같은 사람(지점+이름)의 행은 합산한다 (예: 소속 변경 직후 두 지점 파일에 모두 등장)
+    merged_rows = {}
+    for r in apply_personnel_changes(trainer_rows):
+        key = (r["branch_no"], r["name"])
+        if key in merged_rows:
+            merged_rows[key]["sales"] += r["sales"]
+        else:
+            merged_rows[key] = dict(r)
+    trainer_rows = list(merged_rows.values())
+
     # PT 개인매출 종합 순위: 매니저·팀장 직급과 PT부서장은 제외한다 (프로모션의 PT부서장 순위는 별도)
     trainer_rows = [
         r for r in trainer_rows

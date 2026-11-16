@@ -14,7 +14,7 @@
   적힌 행의 PT 매출(O,P,Q,T열)을 해당 담당자 매출에서 뺀다.
 """
 
-from .adjustments import EXCLUDED_STAFF
+from .adjustments import EXCLUDED_STAFF, apply_personnel_changes
 from .parser import extract_pt_ranking, extract_walkin_pt_sales, select_files_for_month
 from .utils import BRANCHES, EXCLUDED_BRANCHES
 
@@ -27,8 +27,8 @@ PT_HEADS = {
     1: ["황하늘", "이초은"],   # 역삼
     2: ["장광희", "변재용"],   # 선정릉
     3: ["이상훈", "배재민"],   # 대치
-    4: ["김원준"],             # 송파
-    5: ["김진웅"],             # 장안
+    4: [],                     # 송파 (김원준 삭제: 2026-11-16 요청)
+    5: [],                     # 장안 (김진웅은 11-16부터 대치점 시니어로 변경)
     6: ["송석민"],             # 가락
     7: ["윤휘용"],             # 삼전
 }
@@ -75,13 +75,13 @@ def build_promotion(data_dir: str, warnings: list) -> dict:
             if branch_no in EXCLUDED_BRANCHES:
                 continue
             walkin = extract_walkin_pt_sales(file_info["path"])
-            for row in extract_pt_ranking(file_info["path"], branch_no):
+            for row in apply_personnel_changes(extract_pt_ranking(file_info["path"], branch_no)):
                 if row["name"] in EXCLUDED_STAFF:
                     continue
-                key = (branch_no, row["name"])
+                key = (row["branch_no"], row["name"])
                 entry = totals.setdefault(key, {
                     "name": row["name"],
-                    "branch_no": branch_no,
+                    "branch_no": row["branch_no"],
                     "branch_name": row["branch_name"],
                     "title": row.get("title"),
                     "gross_sales": 0,
@@ -92,7 +92,7 @@ def build_promotion(data_dir: str, warnings: list) -> dict:
                 w = walkin.get(row["name"], 0)
                 entry["gross_sales"] += row["sales"]
                 entry["walkin_sales"] += w
-                entry["monthly"][yymm] = row["sales"] - w
+                entry["monthly"][yymm] = entry["monthly"].get(yymm, 0) + row["sales"] - w
 
     if not months_used:
         return None
