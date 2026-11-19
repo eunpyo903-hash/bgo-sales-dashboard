@@ -59,9 +59,13 @@ def aggregate_new_renew_totals(branch_data: dict) -> dict:
 
 def rank_branches(branch_data: dict) -> list:
     """총매출 목표 달성률(rate_total) 내림차순으로 지점 순위를 매긴다."""
+    # 표시용 달성률은 소수 첫째 자리로 반올림되므로, 동률처럼 보여도 순위는 정확한 비율(실적/목표)로 정한다.
     ordered = sorted(
         branch_data.items(),
-        key=lambda item: item[1]["rate_total"],
+        key=lambda item: (
+            item[1]["actual_total"] / item[1]["target_total"] if item[1]["target_total"] else 0,
+            item[1]["rate_total"],
+        ),
         reverse=True,
     )
 
