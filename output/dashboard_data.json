@@ -1,7 +1,7 @@
 {
   "period": "2026-11",
   "reference_date": "2026-11-19",
-  "generated_at": "2026-11-20 12:44",
+  "generated_at": "2026-11-20 16:44",
   "company": {
     "target_total": 456000000,
     "actual_total": 180140393,
@@ -340,34 +340,27 @@
     },
     {
       "rank": 22,
-      "name": "김동옥",
-      "branch_no": 1,
-      "branch_name": "역삼",
-      "sales": 0
-    },
-    {
-      "rank": 23,
       "name": "김건우",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 0
     },
     {
-      "rank": 24,
+      "rank": 23,
       "name": "황도영",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 0
     },
     {
-      "rank": 25,
+      "rank": 24,
       "name": "한수임",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 0
     },
     {
-      "rank": 26,
+      "rank": 25,
       "name": "한채아",
       "branch_no": 5,
       "branch_name": "장안",
@@ -384,7 +377,7 @@
       "2026-11"
     ],
     "walkin_rule": "상세 거래 내역 비고/기타 칸에 '워크인' 표기된 PT 매출 제외",
-    "walkin_total": 4450000,
+    "walkin_total": 12000900,
     "staff": {
       "label": "PT · PT시니어",
       "prizes": [
@@ -776,21 +769,6 @@
           "gap_to_prev": 398000
         },
         {
-          "name": "한희수",
-          "branch_no": 3,
-          "branch_name": "대치",
-          "title": "팀원",
-          "gross_sales": 3294000,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 3294000
-          },
-          "sales": 3294000,
-          "rank": 25,
-          "prize": 0,
-          "gap_to_prev": 8000
-        },
-        {
           "name": "주상규",
           "branch_no": 3,
           "branch_name": "대치",
@@ -801,40 +779,9 @@
             "2611": 720000
           },
           "sales": 720000,
-          "rank": 26,
+          "rank": 25,
           "prize": 0,
-          "gap_to_prev": 2574000
-        },
-        {
-          "name": "박도유",
-          "branch_no": 2,
-          "branch_name": "선정릉",
-          "title": "팀원",
-          "gross_sales": 80000,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 80000
-          },
-          "sales": 80000,
-          "rank": 27,
-          "prize": 0,
-          "gap_to_prev": 640000
-        },
-        {
-          "name": "김동옥",
-          "branch_no": 1,
-          "branch_name": "역삼",
-          "title": "팀원",
-          "gross_sales": 0,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 0,
-            "2611": 0
-          },
-          "sales": 0,
-          "rank": 28,
-          "prize": 0,
-          "gap_to_prev": 80000
+          "gap_to_prev": 2582000
         },
         {
           "name": "한채아",
@@ -847,24 +794,9 @@
             "2611": 0
           },
           "sales": 0,
-          "rank": 28,
+          "rank": 26,
           "prize": 0,
-          "gap_to_prev": 0
-        },
-        {
-          "name": "이만열",
-          "branch_no": 3,
-          "branch_name": "대치",
-          "title": "팀원",
-          "gross_sales": -1080000,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": -1080000
-          },
-          "sales": -1080000,
-          "rank": 30,
-          "prize": 0,
-          "gap_to_prev": 1080000
+          "gap_to_prev": 720000
         }
       ]
     },
@@ -881,12 +813,12 @@
           "branch_name": "선정릉",
           "title": "매니저",
           "gross_sales": 24696000,
-          "walkin_sales": 0,
+          "walkin_sales": 5960000,
           "monthly": {
-            "2610": 13426000,
-            "2611": 11270000
+            "2610": 9446000,
+            "2611": 9290000
           },
-          "sales": 24696000,
+          "sales": 18736000,
           "rank": 1,
           "prize": 500000,
           "gap_to_prev": 0
@@ -905,7 +837,7 @@
           "sales": 18362900,
           "rank": 2,
           "prize": 0,
-          "gap_to_prev": 6333100
+          "gap_to_prev": 373100
         },
         {
           "name": "장광희",
@@ -913,15 +845,15 @@
           "branch_name": "선정릉",
           "title": "팀장",
           "gross_sales": 14613540,
-          "walkin_sales": 0,
+          "walkin_sales": 1590900,
           "monthly": {
-            "2610": 6792640,
-            "2611": 7820900
+            "2610": 5912640,
+            "2611": 7110000
           },
-          "sales": 14613540,
+          "sales": 13022640,
           "rank": 3,
           "prize": 0,
-          "gap_to_prev": 3749360
+          "gap_to_prev": 5340260
         },
         {
           "name": "이초은",
@@ -937,7 +869,7 @@
           "sales": 10561800,
           "rank": 4,
           "prize": 0,
-          "gap_to_prev": 4051740
+          "gap_to_prev": 2460840
         },
         {
           "name": "배재민",

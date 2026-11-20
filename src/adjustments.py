@@ -10,7 +10,10 @@
 
 from .utils import BRANCHES, safe_div_rate
 
-EXCLUDED_STAFF = {"이은표"}
+# 퇴사자 (2026-11-20 팀원현황 기준): PT 개인매출 순위·프로모션에서 제외 (10월 기록 포함)
+RESIGNED_STAFF = {"한희수", "이만열", "김동옥", "박도유"}
+
+EXCLUDED_STAFF = {"이은표"} | RESIGNED_STAFF
 
 # 인사 변경: 이름 -> 새 소속 지점번호·직급. 지점 Excel의 [매출순위] 시트에 아직 예전 소속/직급으로
 # 남아 있어도, 순위·프로모션에서는 새 소속·직급으로 집계하고 기존 기록도 새 소속으로 합산한다.
