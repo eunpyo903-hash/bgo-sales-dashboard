@@ -532,7 +532,7 @@
 
       <section>
         <h2 class="section-title">PT부서장 — 기간 내 누적 개인 매출</h2>
-        <div class="promo-rule">1등 50만 원 &nbsp;|&nbsp; ※ 부서장 공석 시 해당 지점장으로 대체</div>
+        <div class="promo-rule">1등 50만 원</div>
         <div class="podium" id="promo-heads-podium"></div>
         <div class="table-scroll">
           <table>
@@ -746,13 +746,12 @@
     ranking.forEach(function (r) {
       const tr = el("tr");
       if (r.rank <= 3 && r.sales > 0) tr.className = "top" + r.rank;
-      const walkin = r.walkin_sales ? "<span class='prize-tag'>워크인 -" + formatWon(r.walkin_sales) + "</span>" : "";
       tr.innerHTML =
         "<td><span class='rank-badge'>" + r.rank + "</span></td>" +
         "<td>" + r.name + (r.prize ? "<span class='prize-tag'>" + formatWon(r.prize) + "</span>" : "") + "</td>" +
         "<td>" + r.branch_name + "점</td>" +
         "<td class='muted'>" + (r.title || "-") + "</td>" +
-        "<td>" + formatWon(r.sales) + walkin + "</td>" +
+        "<td>" + formatWon(r.sales) + "</td>" +
         "<td class='muted'>" + (r.gap_to_prev ? "-" + formatWon(r.gap_to_prev) : "-") + "</td>";
       body.appendChild(tr);
     });
