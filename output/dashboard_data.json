@@ -1,25 +1,25 @@
 {
   "period": "2026-11",
-  "reference_date": "2026-11-25",
-  "generated_at": "2026-11-26 12:46",
+  "reference_date": "2026-11-26",
+  "generated_at": "2026-11-27 14:11",
   "company": {
     "target_total": 456000000,
-    "actual_total": 248596693,
-    "rate_total": 54.5,
+    "actual_total": 277125693,
+    "rate_total": 60.8,
     "target_fc": 178000000.0,
-    "actual_fc": 92773733,
-    "rate_fc": 52.1,
+    "actual_fc": 105723733,
+    "rate_fc": 59.4,
     "target_pt": 278000000.0,
-    "actual_pt": 155822960,
-    "rate_pt": 56.1,
-    "fc_new_count": 145,
-    "fc_new_sales": 39675900,
-    "fc_renew_count": 142,
-    "fc_renew_sales": 45032500,
-    "pt_new_count": 34,
-    "pt_new_sales": 35649100,
-    "pt_renew_count": 78,
-    "pt_renew_sales": 123076800
+    "actual_pt": 171401960,
+    "rate_pt": 61.7,
+    "fc_new_count": 156,
+    "fc_new_sales": 43141400,
+    "fc_renew_count": 164,
+    "fc_renew_sales": 53995500,
+    "pt_new_count": 38,
+    "pt_new_sales": 38977100,
+    "pt_renew_count": 85,
+    "pt_renew_sales": 135327800
   },
   "branches": [
     {
@@ -28,20 +28,20 @@
       "target_fc": 28000000,
       "target_pt": 40000000,
       "target_total": 68000000,
-      "actual_fc": 14964000,
-      "actual_pt": 17406000,
-      "actual_total": 32370000,
-      "rate_fc": 53.4,
-      "rate_pt": 43.5,
-      "rate_total": 47.6,
+      "actual_fc": 15604000,
+      "actual_pt": 20454000,
+      "actual_total": 36058000,
+      "rate_fc": 55.7,
+      "rate_pt": 51.1,
+      "rate_total": 53.0,
       "fc_new_count": 25,
       "fc_new_sales": 5694000,
-      "fc_renew_count": 24,
-      "fc_renew_sales": 8136000,
-      "pt_new_count": 5,
-      "pt_new_sales": 5075200,
-      "pt_renew_count": 14,
-      "pt_renew_sales": 12330800
+      "fc_renew_count": 26,
+      "fc_renew_sales": 8743000,
+      "pt_new_count": 6,
+      "pt_new_sales": 6173200,
+      "pt_renew_count": 15,
+      "pt_renew_sales": 14280800
     },
     {
       "branch_no": 2,
@@ -49,20 +49,20 @@
       "target_fc": 42000000,
       "target_pt": 73000000,
       "target_total": 115000000,
-      "actual_fc": 18096900,
-      "actual_pt": 46921900,
-      "actual_total": 65018800,
-      "rate_fc": 43.1,
-      "rate_pt": 64.3,
-      "rate_total": 56.5,
-      "fc_new_count": 32,
-      "fc_new_sales": 8842200,
-      "fc_renew_count": 22,
-      "fc_renew_sales": 7263900,
-      "pt_new_count": 10,
-      "pt_new_sales": 12611900,
-      "pt_renew_count": 17,
-      "pt_renew_sales": 33510000
+      "actual_fc": 20979800,
+      "actual_pt": 49551900,
+      "actual_total": 70531700,
+      "rate_fc": 50.0,
+      "rate_pt": 67.9,
+      "rate_total": 61.3,
+      "fc_new_count": 36,
+      "fc_new_sales": 9811100,
+      "fc_renew_count": 26,
+      "fc_renew_sales": 9002900,
+      "pt_new_count": 12,
+      "pt_new_sales": 12741900,
+      "pt_renew_count": 18,
+      "pt_renew_sales": 36010000
     },
     {
       "branch_no": 3,
@@ -70,20 +70,20 @@
       "target_fc": 43000000.0,
       "target_pt": 70000000.0,
       "target_total": 113000000,
-      "actual_fc": 18553300,
-      "actual_pt": 51289400,
-      "actual_total": 69842700,
-      "rate_fc": 43.1,
-      "rate_pt": 73.3,
-      "rate_total": 61.8,
-      "fc_new_count": 27,
-      "fc_new_sales": 7134900,
-      "fc_renew_count": 27,
-      "fc_renew_sales": 8568800,
-      "pt_new_count": 11,
-      "pt_new_sales": 8160000,
-      "pt_renew_count": 23,
-      "pt_renew_sales": 45863000
+      "actual_fc": 23010300,
+      "actual_pt": 57014400,
+      "actual_total": 80024700,
+      "rate_fc": 53.5,
+      "rate_pt": 81.4,
+      "rate_total": 70.8,
+      "fc_new_count": 28,
+      "fc_new_sales": 7413900,
+      "fc_renew_count": 35,
+      "fc_renew_sales": 12713800,
+      "pt_new_count": 12,
+      "pt_new_sales": 10260000,
+      "pt_renew_count": 26,
+      "pt_renew_sales": 49488000
     },
     {
       "branch_no": 4,
@@ -91,16 +91,16 @@
       "target_fc": 20000000,
       "target_pt": 30000000,
       "target_total": 50000000,
-      "actual_fc": 10949500,
+      "actual_fc": 11465500,
       "actual_pt": 9065660,
-      "actual_total": 20015160,
-      "rate_fc": 54.7,
+      "actual_total": 20531160,
+      "rate_fc": 57.3,
       "rate_pt": 30.2,
-      "rate_total": 40.0,
+      "rate_total": 41.1,
       "fc_new_count": 17,
       "fc_new_sales": 2410000,
-      "fc_renew_count": 36,
-      "fc_renew_sales": 8160000,
+      "fc_renew_count": 39,
+      "fc_renew_sales": 8676000,
       "pt_new_count": 2,
       "pt_new_sales": 2775000,
       "pt_renew_count": 6,
@@ -112,20 +112,20 @@
       "target_fc": 45000000,
       "target_pt": 65000000,
       "target_total": 110000000,
-      "actual_fc": 30210033,
-      "actual_pt": 31140000,
-      "actual_total": 61350033,
-      "rate_fc": 67.1,
-      "rate_pt": 47.9,
-      "rate_total": 55.8,
-      "fc_new_count": 44,
-      "fc_new_sales": 15594800,
-      "fc_renew_count": 33,
-      "fc_renew_sales": 12903800,
+      "actual_fc": 34664133,
+      "actual_pt": 35316000,
+      "actual_total": 69980133,
+      "rate_fc": 77.0,
+      "rate_pt": 54.3,
+      "rate_total": 63.6,
+      "fc_new_count": 50,
+      "fc_new_sales": 17812400,
+      "fc_renew_count": 38,
+      "fc_renew_sales": 14859800,
       "pt_new_count": 6,
       "pt_new_sales": 7027000,
-      "pt_renew_count": 18,
-      "pt_renew_sales": 24113000
+      "pt_renew_count": 20,
+      "pt_renew_sales": 28289000
     }
   ],
   "branch_ranking": [
@@ -134,58 +134,58 @@
       "branch_no": 3,
       "branch_name": "대치",
       "target_total": 113000000,
-      "actual_total": 69842700,
-      "rate_total": 61.8,
-      "actual_fc": 18553300,
-      "rate_fc": 43.1,
-      "actual_pt": 51289400,
-      "rate_pt": 73.3
+      "actual_total": 80024700,
+      "rate_total": 70.8,
+      "actual_fc": 23010300,
+      "rate_fc": 53.5,
+      "actual_pt": 57014400,
+      "rate_pt": 81.4
     },
     {
       "rank": 2,
-      "branch_no": 2,
-      "branch_name": "선정릉",
-      "target_total": 115000000,
-      "actual_total": 65018800,
-      "rate_total": 56.5,
-      "actual_fc": 18096900,
-      "rate_fc": 43.1,
-      "actual_pt": 46921900,
-      "rate_pt": 64.3
-    },
-    {
-      "rank": 3,
       "branch_no": 5,
       "branch_name": "장안",
       "target_total": 110000000,
-      "actual_total": 61350033,
-      "rate_total": 55.8,
-      "actual_fc": 30210033,
-      "rate_fc": 67.1,
-      "actual_pt": 31140000,
-      "rate_pt": 47.9
+      "actual_total": 69980133,
+      "rate_total": 63.6,
+      "actual_fc": 34664133,
+      "rate_fc": 77.0,
+      "actual_pt": 35316000,
+      "rate_pt": 54.3
+    },
+    {
+      "rank": 3,
+      "branch_no": 2,
+      "branch_name": "선정릉",
+      "target_total": 115000000,
+      "actual_total": 70531700,
+      "rate_total": 61.3,
+      "actual_fc": 20979800,
+      "rate_fc": 50.0,
+      "actual_pt": 49551900,
+      "rate_pt": 67.9
     },
     {
       "rank": 4,
       "branch_no": 1,
       "branch_name": "역삼",
       "target_total": 68000000,
-      "actual_total": 32370000,
-      "rate_total": 47.6,
-      "actual_fc": 14964000,
-      "rate_fc": 53.4,
-      "actual_pt": 17406000,
-      "rate_pt": 43.5
+      "actual_total": 36058000,
+      "rate_total": 53.0,
+      "actual_fc": 15604000,
+      "rate_fc": 55.7,
+      "actual_pt": 20454000,
+      "rate_pt": 51.1
     },
     {
       "rank": 5,
       "branch_no": 4,
       "branch_name": "송파",
       "target_total": 50000000,
-      "actual_total": 20015160,
-      "rate_total": 40.0,
-      "actual_fc": 10949500,
-      "rate_fc": 54.7,
+      "actual_total": 20531160,
+      "rate_total": 41.1,
+      "actual_fc": 11465500,
+      "rate_fc": 57.3,
       "actual_pt": 9065660,
       "rate_pt": 30.2
     }
@@ -207,136 +207,136 @@
     },
     {
       "rank": 3,
+      "name": "송림명",
+      "branch_no": 5,
+      "branch_name": "장안",
+      "sales": 8046000
+    },
+    {
+      "rank": 4,
+      "name": "전현아",
+      "branch_no": 3,
+      "branch_name": "대치",
+      "sales": 7945000
+    },
+    {
+      "rank": 5,
       "name": "이기현",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 7348000
     },
     {
-      "rank": 4,
+      "rank": 6,
       "name": "한어진",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 7315000
     },
     {
-      "rank": 5,
+      "rank": 7,
       "name": "김민수",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 6754000
     },
     {
-      "rank": 6,
+      "rank": 8,
       "name": "김영우",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 5423000
     },
     {
-      "rank": 7,
+      "rank": 9,
       "name": "안도모",
       "branch_no": 1,
       "branch_name": "역삼",
       "sales": 5076800
     },
     {
-      "rank": 8,
+      "rank": 10,
       "name": "김필구",
       "branch_no": 4,
       "branch_name": "송파",
       "sales": 5050000
     },
     {
-      "rank": 9,
+      "rank": 11,
       "name": "김영인",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 5011000
     },
     {
-      "rank": 10,
+      "rank": 12,
       "name": "최성욱",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 4990000
     },
     {
-      "rank": 11,
-      "name": "전현아",
-      "branch_no": 3,
-      "branch_name": "대치",
-      "sales": 4720000
+      "rank": 13,
+      "name": "전현동",
+      "branch_no": 2,
+      "branch_name": "선정릉",
+      "sales": 4660000
     },
     {
-      "rank": 12,
+      "rank": 14,
       "name": "최태원",
       "branch_no": 3,
       "branch_name": "대치",
       "sales": 4560000
     },
     {
-      "rank": 13,
-      "name": "송림명",
-      "branch_no": 5,
-      "branch_name": "장안",
-      "sales": 3870000
-    },
-    {
-      "rank": 14,
-      "name": "전현동",
-      "branch_no": 2,
-      "branch_name": "선정릉",
-      "sales": 2160000
-    },
-    {
       "rank": 15,
+      "name": "안재원",
+      "branch_no": 1,
+      "branch_name": "역삼",
+      "sales": 2596900
+    },
+    {
+      "rank": 16,
       "name": "진정경",
       "branch_no": 1,
       "branch_name": "역삼",
       "sales": 2097900
     },
     {
-      "rank": 16,
+      "rank": 17,
       "name": "이윤석",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 1950000
     },
     {
-      "rank": 17,
+      "rank": 18,
       "name": "황용선",
       "branch_no": 2,
       "branch_name": "선정릉",
       "sales": 1910000
     },
     {
-      "rank": 18,
-      "name": "안재원",
-      "branch_no": 1,
-      "branch_name": "역삼",
-      "sales": 1498900
+      "rank": 19,
+      "name": "주상규",
+      "branch_no": 3,
+      "branch_name": "대치",
+      "sales": 1270000
     },
     {
-      "rank": 19,
+      "rank": 20,
       "name": "김재현",
       "branch_no": 5,
       "branch_name": "장안",
       "sales": 1100000
     },
     {
-      "rank": 20,
+      "rank": 21,
       "name": "조건우",
       "branch_no": 2,
       "branch_name": "선정릉",
-      "sales": 760000
-    },
-    {
-      "rank": 21,
-      "name": "주상규",
-      "branch_no": 3,
-      "branch_name": "대치",
-      "sales": 720000
+      "sales": 810000
     },
     {
       "rank": 22,
@@ -410,6 +410,22 @@
           "gap_to_prev": 0
         },
         {
+          "name": "전현아",
+          "branch_no": 3,
+          "branch_name": "대치",
+          "title": "시니어",
+          "gross_sales": 17794900,
+          "walkin_sales": 840000,
+          "monthly": {
+            "2610": 9009900,
+            "2611": 7945000
+          },
+          "sales": 16954900,
+          "rank": 2,
+          "prize": 500000,
+          "gap_to_prev": 5180100
+        },
+        {
           "name": "김민수",
           "branch_no": 5,
           "branch_name": "장안",
@@ -421,41 +437,41 @@
             "2611": 6754000
           },
           "sales": 14662890,
-          "rank": 2,
-          "prize": 500000,
-          "gap_to_prev": 7472110
-        },
-        {
-          "name": "전현아",
-          "branch_no": 3,
-          "branch_name": "대치",
-          "title": "시니어",
-          "gross_sales": 14569900,
-          "walkin_sales": 840000,
-          "monthly": {
-            "2610": 9009900,
-            "2611": 4720000
-          },
-          "sales": 13729900,
           "rank": 3,
           "prize": 200000,
-          "gap_to_prev": 932990
+          "gap_to_prev": 2292010
         },
         {
           "name": "전현동",
           "branch_no": 2,
           "branch_name": "선정릉",
           "title": "팀원",
-          "gross_sales": 10740000,
+          "gross_sales": 13240000,
           "walkin_sales": 0,
           "monthly": {
             "2610": 8580000,
-            "2611": 2160000
+            "2611": 4660000
           },
-          "sales": 10740000,
+          "sales": 13240000,
           "rank": 4,
           "prize": 0,
-          "gap_to_prev": 2989900
+          "gap_to_prev": 1422890
+        },
+        {
+          "name": "송림명",
+          "branch_no": 5,
+          "branch_name": "장안",
+          "title": "시니어",
+          "gross_sales": 13227900,
+          "walkin_sales": 0,
+          "monthly": {
+            "2610": 5181900,
+            "2611": 8046000
+          },
+          "sales": 13227900,
+          "rank": 5,
+          "prize": 0,
+          "gap_to_prev": 12100
         },
         {
           "name": "김영우",
@@ -469,9 +485,9 @@
             "2611": 5423000
           },
           "sales": 10439000,
-          "rank": 5,
+          "rank": 6,
           "prize": 0,
-          "gap_to_prev": 301000
+          "gap_to_prev": 2788900
         },
         {
           "name": "김영인",
@@ -485,7 +501,7 @@
             "2611": 5011000
           },
           "sales": 10151000,
-          "rank": 6,
+          "rank": 7,
           "prize": 0,
           "gap_to_prev": 288000
         },
@@ -501,9 +517,25 @@
             "2611": 5076800
           },
           "sales": 10116800,
-          "rank": 7,
+          "rank": 8,
           "prize": 0,
           "gap_to_prev": 34200
+        },
+        {
+          "name": "안재원",
+          "branch_no": 1,
+          "branch_name": "역삼",
+          "title": "팀원",
+          "gross_sales": 9894700,
+          "walkin_sales": 0,
+          "monthly": {
+            "2610": 7297800,
+            "2611": 2596900
+          },
+          "sales": 9894700,
+          "rank": 9,
+          "prize": 0,
+          "gap_to_prev": 222100
         },
         {
           "name": "진정경",
@@ -517,25 +549,9 @@
             "2611": 2097900
           },
           "sales": 9226800,
-          "rank": 8,
+          "rank": 10,
           "prize": 0,
-          "gap_to_prev": 890000
-        },
-        {
-          "name": "송림명",
-          "branch_no": 5,
-          "branch_name": "장안",
-          "title": "시니어",
-          "gross_sales": 9051900,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 5181900,
-            "2611": 3870000
-          },
-          "sales": 9051900,
-          "rank": 9,
-          "prize": 0,
-          "gap_to_prev": 174900
+          "gap_to_prev": 667900
         },
         {
           "name": "김민준",
@@ -549,41 +565,25 @@
             "2611": 8415000
           },
           "sales": 8910000,
-          "rank": 10,
-          "prize": 0,
-          "gap_to_prev": 141900
-        },
-        {
-          "name": "안재원",
-          "branch_no": 1,
-          "branch_name": "역삼",
-          "title": "팀원",
-          "gross_sales": 8796700,
-          "walkin_sales": 0,
-          "monthly": {
-            "2610": 7297800,
-            "2611": 1498900
-          },
-          "sales": 8796700,
           "rank": 11,
           "prize": 0,
-          "gap_to_prev": 113300
+          "gap_to_prev": 316800
         },
         {
           "name": "조건우",
           "branch_no": 2,
           "branch_name": "선정릉",
           "title": "팀원",
-          "gross_sales": 8780000,
+          "gross_sales": 8830000,
           "walkin_sales": 0,
           "monthly": {
             "2610": 8020000,
-            "2611": 760000
+            "2611": 810000
           },
-          "sales": 8780000,
+          "sales": 8830000,
           "rank": 12,
           "prize": 0,
-          "gap_to_prev": 16700
+          "gap_to_prev": 80000
         },
         {
           "name": "이기현",
@@ -599,7 +599,7 @@
           "sales": 8658000,
           "rank": 13,
           "prize": 0,
-          "gap_to_prev": 122000
+          "gap_to_prev": 172000
         },
         {
           "name": "이윤석",
@@ -781,15 +781,15 @@
           "branch_no": 3,
           "branch_name": "대치",
           "title": "팀원",
-          "gross_sales": 720000,
+          "gross_sales": 1270000,
           "walkin_sales": 0,
           "monthly": {
-            "2611": 720000
+            "2611": 1270000
           },
-          "sales": 720000,
+          "sales": 1270000,
           "rank": 25,
           "prize": 0,
-          "gap_to_prev": 2582000
+          "gap_to_prev": 2032000
         },
         {
           "name": "한채아",
@@ -804,7 +804,7 @@
           "sales": 0,
           "rank": 26,
           "prize": 0,
-          "gap_to_prev": 720000
+          "gap_to_prev": 1270000
         }
       ]
     },
@@ -851,48 +851,48 @@
           "branch_no": 1,
           "branch_name": "역삼",
           "title": "매니저",
-          "gross_sales": 16056300,
+          "gross_sales": 18006300,
           "walkin_sales": 0,
           "monthly": {
             "2610": 9121800,
-            "2611": 6934500
+            "2611": 8884500
           },
-          "sales": 16056300,
+          "sales": 18006300,
           "rank": 3,
           "prize": 0,
-          "gap_to_prev": 2679700
+          "gap_to_prev": 729700
         },
         {
           "name": "장광희",
           "branch_no": 2,
           "branch_name": "선정릉",
           "title": "팀장",
-          "gross_sales": 14613540,
+          "gross_sales": 14693540,
           "walkin_sales": 1590900,
           "monthly": {
             "2610": 5912640,
-            "2611": 7110000
+            "2611": 7190000
           },
-          "sales": 13022640,
+          "sales": 13102640,
           "rank": 4,
           "prize": 0,
-          "gap_to_prev": 3033660
+          "gap_to_prev": 4903660
         },
         {
           "name": "배재민",
           "branch_no": 3,
           "branch_name": "대치",
           "title": "팀장",
-          "gross_sales": 8730000,
+          "gross_sales": 10680000,
           "walkin_sales": 0,
           "monthly": {
             "2610": 3600000,
-            "2611": 5130000
+            "2611": 7080000
           },
-          "sales": 8730000,
+          "sales": 10680000,
           "rank": 5,
           "prize": 0,
-          "gap_to_prev": 4292640
+          "gap_to_prev": 2422640
         },
         {
           "name": "황하늘",
@@ -908,7 +908,7 @@
           "sales": 5976800,
           "rank": 6,
           "prize": 0,
-          "gap_to_prev": 2753200
+          "gap_to_prev": 4703200
         }
       ]
     }
